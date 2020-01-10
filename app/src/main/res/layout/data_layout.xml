@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="1"
+    android:useDefaultMargins="true">
+
+    <TextView
+        android:id="@+id/amountTextView"
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:hint="@string/enter_amount1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/amountEditText"
+        android:inputType="numberSigned"
+        android:ems="100"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/tip_percentage"
+        android:id="@+id/percentTextView"
+        android:layout_gravity="center_vertical|left"/>
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/percentSeekBar"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:layout_gravity="fill_horizontal"/>
+
+     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/total"
+        android:id="@+id/totalLabelTextView"
+        android:layout_gravity="left"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  >
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">>
+            <ImageButton
+                android:id="@+id/imgBtnQD"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="@drawable/queding" />
+            <ImageButton
+                android:id="@+id/imgBtnQX"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="@drawable/quxiao" />
+        </TableRow>
+    </TableLayout>
+</GridLayout>

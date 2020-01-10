@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/fs_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/fruit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dip" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  >
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+             <ImageButton
+                android:id="@+id/imgBtnSC"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="@drawable/shanchu" />
+            <ImageButton
+                android:id="@+id/imgBtnBZ"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="@drawable/biaozhu" />
+            <TextView
+                android:id="@+id/item_note"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:textColor="#F00"
+                android:textSize="20sp" />
+        </TableRow>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/list_view"  />
+    </TableLayout>
+ </LinearLayout>

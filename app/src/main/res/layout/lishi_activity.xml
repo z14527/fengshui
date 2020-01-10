@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="1"
+    android:useDefaultMargins="true">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  >
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/imgBtnSZ"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/shangchuang" />
+        <ImageButton
+            android:id="@+id/imgBtnXZ"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/xiazai" />
+        <ImageButton
+            android:id="@+id/imgBtnCZ1"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/gjccz" />
+        <ImageButton
+            android:id="@+id/imgBtnCZ2"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/sjcz" />
+        <ImageButton
+            android:id="@+id/imgBtnCZ3"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/quanbu" />
+    </TableRow>
+    </TableLayout>
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#B4B3B3"
+            android:layout_above="@id/tableRow3"
+        android:layout_marginBottom="60dp"
+            android:id="@+id/lishi_list_view"  />
+</GridLayout>

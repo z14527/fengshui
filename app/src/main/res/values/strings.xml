@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">风水大师</string>
+    <string name="enter_amount1">输入数值（0-100）</string>
+    <string name="enter_amount2">输入数值（-100-100）</string>
+    <string name="tip_percentage">0</string>
+    <string name="total">您输入的数值为：</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="title_activity_wxentry">WXEntryActivity</string>
+    <string name="up_url">http://z14527.gz01.bdysite.com/up.php</string>
+    <string name="listdb_url">http://z14527.gz01.bdysite.com/listdb.php</string>
+    <string name="data_url">http://z14527.gz01.bdysite.com/data/</string>
+    <string name="pf_url">http://z14527.gz01.bdysite.com/pf.php</string>
+    <string name="main_activity_button1_name">登录</string>
+    <string name="main_activity_button2_name">新宝地</string>
+    <string name="main_activity_button3_name">历史宝地</string>
+</resources>
