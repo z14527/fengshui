@@ -1,16 +1,19 @@
 package com.gyq.fengshui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.LauncherActivity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,15 +32,19 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-import com.tencent.mm.opensdk.modelmsg.WXTextObject;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+import io.reactivex.Observable;
+
+import io.reactivex.functions.Action;
 
 import static android.widget.Toast.*;
 
@@ -46,6 +53,54 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String[] permissionsGroup=new String[]{Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.INTERNET};
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.requestEach(permissionsGroup)
+                .subscribe(permission -> {
+                    Toast.makeText(this,"权限名称:"+permission.name+",申请结果:"+permission.granted, LENGTH_LONG);
+                });
+//        Permission permission = new Permission(permissionString, granted, shouldShowRequestPermissionRationale);
+//        when(rxPermissions.requestEach(permissionString)).thenReturn(Observable.just(permission));
+//        // test
+      //  rxPermissions.requestEach(permissionString).test().assertNoErrors().assertValue(permission);
+
+ //       RxPermissions rxPermissions = new RxPermissions(this);
+//        rxPermissions
+//                .request(Manifest.permission.CAMERA)
+//                .subscribe(new Consumer<Permission>() {
+//                               @Override
+//                               public void accept(Permission permission) {
+//                              //     Log.i(TAG, "Permission result " + permission);
+//                                   if (permission.granted) {
+//                                             } else if (permission.shouldShowRequestPermissionRationale) {
+//                                       // Denied permission without ask never again
+//                                       Toast.makeText(MainActivity.this,
+//                                               "Denied permission without ask never again",
+//                                               Toast.LENGTH_SHORT).show();
+//                                   } else {
+//                                       // Denied permission with ask never again
+//                                       // Need to go to the settings
+//                                       Toast.makeText(MainActivity.this,
+//                                               "Permission denied, can't enable the camera",
+//                                               Toast.LENGTH_SHORT).show();
+//                                   }
+//                               }
+//                           },
+//                new Consumer<Throwable>() {
+//                    @Override
+//                    public void accept(Throwable t) {
+//              //          Log.e(TAG, "onError", t);
+//                    }
+//                },
+//                new Action() {
+//                    @Override
+//                    public void run() {
+//              //          Log.i(TAG, "OnComplete");
+//                    }
+//                });
         final ImageButton btxbd = (ImageButton) findViewById(R.id.imgBtnXBD);
         btxbd.setOnClickListener(new View.OnClickListener(){
             @Override
