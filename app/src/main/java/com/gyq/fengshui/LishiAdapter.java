@@ -202,6 +202,7 @@ public class LishiAdapter extends BaseAdapter {
         holder.imageView4 = (ImageView) arg1.findViewById(R.id.image_view4);
         holder.imageView5 = (ImageView) arg1.findViewById(R.id.image_view5);
         holder.imageView6 = (ImageView) arg1.findViewById(R.id.image_view6);
+        holder.imageView7 = (ImageView) arg1.findViewById(R.id.image_view7);
 //       holder.imageView6 = (ImageView) arg1.findViewById(R.id.image_view6);
         holder.imageView1.setOnClickListener(new OnClickListener(){
             @Override
@@ -366,6 +367,13 @@ public class LishiAdapter extends BaseAdapter {
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 getApplicationContext().startActivity(intent);
             }});
+        holder.imageView7.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // TODO 罗盘
+                Intent intent = new Intent(context,FsChartActivity.class);
+                context.startActivity(intent);
+            }});
        return arg1;
     }
     private String getDbValue(String dbid)
@@ -423,6 +431,8 @@ public class LishiAdapter extends BaseAdapter {
         public ImageView imageView4 ;
         public ImageView imageView5 ;
         public ImageView imageView6 ;
+        public ImageView imageView7 ;
+
 
   //      public ImageView imageView6 ;
         public TextView textView1 ;

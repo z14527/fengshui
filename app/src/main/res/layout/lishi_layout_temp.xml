@@ -43,20 +43,26 @@
                 android:textSize="16sp" />
         </LinearLayout>
         <ImageView
+            android:id="@+id/image_view7"
+            android:layout_width="45sp"
+            android:layout_height="50sp"
+            android:focusable="false"
+            android:src="@drawable/lp" />
+        <ImageView
             android:id="@+id/image_view6"
-            android:layout_width="50sp"
+            android:layout_width="45sp"
             android:layout_height="50sp"
             android:focusable="false"
             android:src="@drawable/chakan" />
         <ImageView
             android:id="@+id/image_view4"
-            android:layout_width="50sp"
+            android:layout_width="45sp"
             android:layout_height="50sp"
             android:focusable="false"
             android:src="@drawable/xiugai" />
         <ImageView
             android:id="@+id/image_view5"
-            android:layout_width="50sp"
+            android:layout_width="45sp"
             android:layout_height="50sp"
             android:focusable="false"
             android:src="@drawable/pingfen"/>

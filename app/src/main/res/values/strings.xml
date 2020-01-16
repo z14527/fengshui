@@ -13,4 +13,8 @@
     <string name="main_activity_button1_name">登录</string>
     <string name="main_activity_button2_name">新宝地</string>
     <string name="main_activity_button3_name">历史宝地</string>
+    <string name="title_activity_fschart">fschart</string>
+    <string name="tv_redraw_txt">按照左边数据重新作图</string>
+    <string name="tv_to_shui_txt">山数据推出水数据</string>
+    <string name="tv_shan_shui_switch_txt">山水数据切换</string>
 </resources>
