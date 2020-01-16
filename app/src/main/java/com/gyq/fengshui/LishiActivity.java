@@ -422,35 +422,38 @@ public class LishiActivity extends AppCompatActivity {
         }catch(SecurityException e1){
             e1.printStackTrace();
         }
-        if (phoneNumber1.equals("")  && pref.getString("phoneNumber","").equals(""))
-        {
-            Toast.makeText(getApplicationContext(), "权限不足，无法获取手机号码！\n" + phoneNumber1, Toast.LENGTH_SHORT).show();
-            AlertDialog.Builder builder = new AlertDialog.Builder(LishiActivity.this);
-            builder.setTitle("权限不足，无法获取手机号码！\n" + phoneNumber1 + "\n请输入校验码：");    //设置对话框标题
-            builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
-            final EditText edit = new EditText(LishiActivity.this);
-            builder.setView(edit);
-            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String pn = edit.getText().toString();
-                    editor = pref.edit();
-                    editor.putString("phoneNumber",pn);
-                    editor.commit();
-                }
-            });
-            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(LishiActivity.this, "你点了取消", Toast.LENGTH_SHORT).show();
-                }
-            });
-            builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
-            AlertDialog dialog = builder.create();  //创建对话框
-            dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
-            dialog.show();
-        }
-        phoneNumber1 = pref.getString("phoneNumber","");
+        Toast.makeText(getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
+//        if (phoneNumber1.equals("")  && pref.getString("phoneNumber","").equals(""))
+//        {
+//            Toast.makeText(getApplicationContext(), "权限不足，无法获取手机号码！\n" + phoneNumber1, Toast.LENGTH_SHORT).show();
+//            AlertDialog.Builder builder = new AlertDialog.Builder(LishiActivity.this);
+//            builder.setTitle("权限不足，无法获取手机号码！\n" + phoneNumber1 + "\n请输入校验码：");    //设置对话框标题
+//            builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
+//            final EditText edit = new EditText(LishiActivity.this);
+//            builder.setView(edit);
+//            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    String pn = edit.getText().toString();
+//                    editor = pref.edit();
+//                    editor.putString("phoneNumber",pn);
+//                    editor.commit();
+//                }
+//            });
+//            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    Toast.makeText(LishiActivity.this, "你点了取消", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//            builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
+//            AlertDialog dialog = builder.create();  //创建对话框
+//            dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+//            dialog.show();
+//        }
+//        phoneNumber1 = pref.getString("phoneNumber","");
+        if (phoneNumber1.equals(""))
+            phoneNumber1 = "13683559392";
         return phoneNumber1;
     }
  }
