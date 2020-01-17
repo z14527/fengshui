@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.gyq.fschart.DrawingView
+    <com.gyq.fengshui.DrawingView
         android:id="@+id/img_screenshot"
         android:layout_width="match_parent"
         android:layout_height="200dp"

@@ -56,7 +56,14 @@ public class MainActivity extends AppCompatActivity  {
         String[] permissionsGroup=new String[]{Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.INTERNET};
+                Manifest.permission.INTERNET,
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.READ_PHONE_NUMBERS,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.WRITE_CONTACTS,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.ACCESS_WIFI_STATE
+        };
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.requestEach(permissionsGroup)
                 .subscribe(permission -> {
