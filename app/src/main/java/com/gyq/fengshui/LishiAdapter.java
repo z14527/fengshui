@@ -80,16 +80,18 @@ public class LishiAdapter extends BaseAdapter {
     private LayoutInflater mInflater ;
     private ArrayList<Map<String,Object>> listData ;
     private Context context ;
+    private Activity activity;
     private String name = "";
     private String dbid = "";
     private DatabaseHelper mydb = null;
     private String fs24 = "子癸丑艮寅甲卯乙辰巽巳丙午丁未坤申庚酉辛戌乾亥壬";
 
-    public LishiAdapter(Context context,ArrayList<Map<String,Object>> listData)
+    public LishiAdapter(Context context,Activity activity,ArrayList<Map<String,Object>> listData)
     {
         mInflater = LayoutInflater.from(context) ;
         this.listData = listData ;
         this.context = context ;
+        this.activity = activity;
     }
     public void setListData(ArrayList<Map<String,Object>> listData1){
         this.listData=listData1;
@@ -291,7 +293,7 @@ public class LishiAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // TODO 评分
-                String phone = getNumber();
+                String phone = new Gongju().getNumber(activity);
      //           if(phone!=null)
       //              Toast.makeText(context,"phone number =" + phone ,Toast.LENGTH_SHORT).show();
                 String shan = "";
@@ -443,12 +445,6 @@ public class LishiAdapter extends BaseAdapter {
     public ArrayList<Map<String,Object>> getListData(){
         return this.listData;
     }
-    public String getNumber()
-    {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
-        String phoneNumber1 = null;
-        phoneNumber1 = tm.getLine1Number();
-        return phoneNumber1;
-    }
+
 }
 

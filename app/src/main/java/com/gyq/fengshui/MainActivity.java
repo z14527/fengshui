@@ -5,15 +5,20 @@ import android.app.Activity;
 import android.app.LauncherActivity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,6 +44,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import android.telephony.TelephonyManager;
+import static android.content.Context.TELEPHONY_SERVICE;
 
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -185,4 +192,43 @@ public class MainActivity extends AppCompatActivity  {
             return false;
         }
     }
+}
+class Gongju {
+    public String getNumber(Activity at) {
+        TelephonyManager tm = (TelephonyManager) at.getSystemService(TELEPHONY_SERVICE);
+        String phoneNumber1 = "";
+        try {
+            phoneNumber1 = tm.getLine1Number();
+        }catch(SecurityException e1){
+            e1.printStackTrace();
+        }
+        Toast.makeText(at.getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
+        if (phoneNumber1.equals(""))
+            phoneNumber1 = "13683559392";
+        return phoneNumber1;
+    }
+    public void ShowMsg(Context context,String msg){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("宝地具体情况");    //设置对话框标题
+        builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
+        final TextView tv = new TextView(context);
+        //tv.setBackgroundResource(R.drawable.fengmian);
+        tv.setTextSize(25);
+        tv.setTextColor(Color.RED);
+        tv.setText(msg);
+        tv.setGravity(Gravity.CENTER_VERTICAL| Gravity.CENTER_HORIZONTAL);
+        tv.setMovementMethod(ScrollingMovementMethod.getInstance());
+        builder.setView(tv);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
+        AlertDialog dialog = builder.create();  //创建对话框
+        dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+        dialog.show();
+    }
+
 }

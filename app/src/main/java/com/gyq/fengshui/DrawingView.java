@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,6 +33,7 @@ import java.util.Map;
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;
 import static java.lang.Math.cos;
+import static java.lang.Math.max;
 import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 
@@ -53,9 +55,9 @@ public class DrawingView extends View {
     private float mPaintBarPenSize;
     private int mPaintBarPenColor;
 
-    private float x0 = 726;
-    private float y0 = 651;
-    private float r = (1090-726);
+    private float x0 = 0;//726;
+    private float y0 = 0;//651;
+    private float r = 0;//(1090-726);
     private int clickCount = 0;
 
     public DrawingView(Context c) {
@@ -140,6 +142,7 @@ public class DrawingView extends View {
             mProportion = 0;
             canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         }
+
     }
 
     @Override
@@ -179,10 +182,11 @@ public class DrawingView extends View {
                     mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
                     mX = x;
                     mY = y;
+                    clickCount = 0;
                     for (int k = 0; k < 6; k++) {
                         double theta = abs(180 * Math.atan((y - y0) / (x - x0)) / PI);
                         if (k * 15 < theta && (k + 1) * 15 > theta) {
-                            double r1 = sqrt((y - y0) * (y - y0) + (x - x0) * (x - x0));
+                            double r1 = 100*sqrt((y - y0) * (y - y0) + (x - x0) * (x - x0))/r;
                             int k1 = k;
                             if (x < x0 && y > y0)
                                 k1 = 11 - k1;
@@ -287,6 +291,7 @@ public class DrawingView extends View {
         mBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
         mCanvas = new Canvas(mBitmap);
         invalidate();
+        setBitmapPara();
     }
     public void ReDrawImage() {
         mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
@@ -296,14 +301,19 @@ public class DrawingView extends View {
         float x11 = 0;
         float y11 = 0;
         for(int i=0;i<24;i++){
-            String fs1 = FsChartActivity.shan.substring(i,i+1);
-            int r1 = FsChartActivity.ShanMap.get(fs1);
+            String fs1 = "";
+            int r1 = 0;
+            int j= i+1;
             if(FsChartActivity.bshan == 0){
                 fs1 = FsChartActivity.shui.substring(i,i+1);
-                r1 = FsChartActivity.ShuiMap.get(fs1);
+                r1 = (int)r*FsChartActivity.ShuiMap.get(fs1)/100;
+                j = j + 1;
+            }else{
+                fs1 = FsChartActivity.shan.substring(i,i+1);
+                r1 = (int)r*FsChartActivity.ShanMap.get(fs1)/100;
             }
-            float x1 = (float)(x0 + r1*cos(i*PI/12));
-            float y1 = (float)(y0 + r1*sin(i*PI/12));
+            float x1 = (float)(x0 + r1*cos(j*PI/12));
+            float y1 = (float)(y0 + r1*sin(j*PI/12));
             if(i==0) {
                 mPath.moveTo(x1, y1);
                 x11 = x1;
@@ -432,22 +442,49 @@ public class DrawingView extends View {
             return paintWidth;
         }
     }
-    public boolean panduan(Point a, Point b, Point c, Point p) {
-        double abc = triangleArea(a, b, c);
-        double abp = triangleArea(a, b, p);
-        double acp = triangleArea(a, c, p);
-        double bcp = triangleArea(b, c, p);
-        if (abc == abp + acp + bcp) {
-            return true;
-        } else {
-            return false;
+
+    private  void setBitmapPara(){
+        if(r>50)
+            return;
+        boolean bXY0 = false;
+        boolean bR = false;
+        int x1 = 0;
+        int y1 = 0;
+        int r2 = 0;
+        int b2 = 0;
+        for (int i = 0; i < mBitmap.getWidth(); i++) {
+            for (int j = 0; j < mBitmap.getHeight(); j++) {
+                //获得Bitmap 图片中每一个点的color颜色值
+                int color = mBitmap.getPixel(i,j);
+                //将颜色值存在一个数组中 方便后面修改
+                // mArrayColor[count] = color;
+                int r1 = Color.red(color);
+                int g1 = Color.green(color);
+                int b1 = Color.blue(color);
+                int a1 =Color.alpha(color);
+                if(r1>200 && g1<10 && b1<10) {
+                    bXY0 = true;
+                    x0 = i;
+                    y0 = j;
+                    r2 = r1;
+                }
+                if(b1>200 && g1<10 && r1<10) {
+                    bR = true;
+                    x1 = i;
+                    y1 = j;
+                    b2 = b1;
+                }
+                if(bR && bXY0) {
+                    break;
+                }
+            }
+            if(bR && bXY0) {
+                break;
+            }
         }
+    //    new Gongju().ShowMsg(getContext(),"x0="+x0+";y0="+y0+";r2="+r2);
+    //    new Gongju().ShowMsg(getContext(),"x1="+x1+";y1="+y1+";b2="+b2);
+        r = (float)sqrt((x1-x0)*(x1-x0)+(y1-y0)*(y1-y0));
+    //    new Gongju().ShowMsg(getContext(),"x0="+x0+";y0="+y0+";r="+r);
     }
-
-    private double triangleArea(Point a, Point b, Point c) {// 返回三个点组成三角形的面积
-        double result = abs((a.x * b.y + b.x * c.y + c.x * a.y - b.x * a.y
-                - c.x * b.y - a.x * c.y) / 2.0D);
-        return result;
-    }
-
 }

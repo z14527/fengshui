@@ -115,7 +115,7 @@ public class LishiActivity extends AppCompatActivity {
         listData = getData();
         //Toast.makeText(getApplicationContext(), "InputActivity MyListeView dbid="+dbid, 1).show();
         if (lsAdapter == null)
-            lsAdapter = new LishiAdapter(this, listData);
+            lsAdapter = new LishiAdapter(this,this,listData);
         lv.setAdapter(lsAdapter);
         ImageButton btxcz1 = (ImageButton) findViewById(R.id.imgBtnCZ1);
         btxcz1.setOnClickListener(new View.OnClickListener() {
@@ -257,7 +257,7 @@ public class LishiActivity extends AppCompatActivity {
     }
 
     private void upLoadDBfile() {
-        final String phone = getNumber();
+        final String phone = new Gongju().getNumber(this);
         final String dbs = getApplicationContext().getDatabasePath("fengshui.db").getAbsolutePath();
         //用HttpClient发送请求，分为五步
 //第一步：创建HttpClient对象
@@ -334,7 +334,7 @@ public class LishiActivity extends AppCompatActivity {
         //第一步：创建HttpClient对象
         HttpClient httpCient = new DefaultHttpClient();
         //第二步：创建代表请求的对象,参数是访问的服务器地址
-        HttpGet httpGet = new HttpGet(getString(R.string.listdb_url) + "?p=" + getNumber());
+        HttpGet httpGet = new HttpGet(getString(R.string.listdb_url) + "?p=" + (new Gongju().getNumber(this)));
         ArrayList<NameValuePair> headerList = new ArrayList<NameValuePair>();
         headerList.add(new BasicNameValuePair("Content-Type",
                 "text/html; charset=utf-8"));
@@ -414,47 +414,5 @@ public class LishiActivity extends AppCompatActivity {
         return ret;
     }
 
-    public String getNumber() {
-        TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        String phoneNumber1 = "";
-        try {
-            phoneNumber1 = tm.getLine1Number();
-        }catch(SecurityException e1){
-            e1.printStackTrace();
-        }
-        Toast.makeText(getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
-//        if (phoneNumber1.equals("")  && pref.getString("phoneNumber","").equals(""))
-//        {
-//            Toast.makeText(getApplicationContext(), "权限不足，无法获取手机号码！\n" + phoneNumber1, Toast.LENGTH_SHORT).show();
-//            AlertDialog.Builder builder = new AlertDialog.Builder(LishiActivity.this);
-//            builder.setTitle("权限不足，无法获取手机号码！\n" + phoneNumber1 + "\n请输入校验码：");    //设置对话框标题
-//            builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
-//            final EditText edit = new EditText(LishiActivity.this);
-//            builder.setView(edit);
-//            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    String pn = edit.getText().toString();
-//                    editor = pref.edit();
-//                    editor.putString("phoneNumber",pn);
-//                    editor.commit();
-//                }
-//            });
-//            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    Toast.makeText(LishiActivity.this, "你点了取消", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//            builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
-//            AlertDialog dialog = builder.create();  //创建对话框
-//            dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
-//            dialog.show();
-//        }
-//        phoneNumber1 = pref.getString("phoneNumber","");
-        if (phoneNumber1.equals(""))
-            phoneNumber1 = "13683559392";
-        return phoneNumber1;
-    }
- }
+}
 

@@ -26,7 +26,7 @@ import java.util.Map;
 import static android.widget.Toast.LENGTH_LONG;
 
 public class FsChartActivity extends AppCompatActivity implements View.OnClickListener{
-    private DrawingView mDrawingView;
+    private static DrawingView mDrawingView;
     private static TextView mTextView = null;
     private TextView mTvReDraw = null;
     private TextView mTvToShui = null;
@@ -68,10 +68,15 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                     lshan = fs1;
                                     String info = "";
                                     for (int j = 0; j < 24; j++) {
-                                        info = info + shan.substring(j, j + 1) + ": " + ShanMap.get(shan.substring(j, j + 1)) + "\t\t\t\t\t";
+                                        info = info + shan.substring(j, j + 1) + ": " +
+                                                String.format("%04d",ShanMap.get(shan.substring(j, j + 1)))
+                                                + "\t\t\t\t";
                                         if (j % 3 == 2)
                                             info = info + "\n";
                                     }
+                                    info = info.replaceAll(": 000",":     ");
+                                    info = info.replaceAll(": 00",":   ");
+                                    info = info.replaceAll(": 0",": ");
                                     mTextView.setText(info);
                                 }else{
                                     builder = new AlertDialog.Builder(context);
@@ -83,7 +88,19 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             String shan1 = edit.getText().toString();
+                                            int r1 = 0;
+                                            try {
+                                                r1 = Integer.parseInt(shan1);
+                                            }catch (Exception e1)
+                                            {
+                                                e1.printStackTrace();
+                                            }
                                             Toast.makeText(context,"输入的数值为："+shan1, LENGTH_LONG);
+                                            if (fs1.equals(lshan))
+                                                ShanMap.put(fs1, Math.max(ShanMap.get(fs1), r1));
+                                            else
+                                                ShanMap.put(fs1, r1);
+                                            mDrawingView.ReDrawImage();
                                         }
                                     });
                                     builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -110,10 +127,15 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                     lshui = fs1;
                                     String info = "";
                                     for (int j = 0; j < 24; j++) {
-                                        info = info + shui.substring(j, j + 1) + ": " + ShuiMap.get(shui.substring(j, j + 1)) + "\t\t\t\t\t";
+                                        info = info + shui.substring(j, j + 1) + ": " +
+                                                String.format("%04d",ShuiMap.get(shui.substring(j, j + 1)))+
+                                                "\t\t\t\t";
                                         if (j % 3 == 2)
                                             info = info + "\n";
                                     }
+                                    info = info.replaceAll(": 000",":     ");
+                                    info = info.replaceAll(": 00",":   ");
+                                    info = info.replaceAll(": 0",": ");
                                     mTextView.setText(info);
                                 }else{
                                     builder = new AlertDialog.Builder(context);
@@ -125,7 +147,19 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             String shui1 = edit.getText().toString();
+                                            int r1 = 0;
+                                            try {
+                                                r1 = Integer.parseInt(shui1);
+                                            }catch (Exception e1)
+                                            {
+                                                e1.printStackTrace();
+                                            }
                                             Toast.makeText(context,"输入的数值为："+shui1, LENGTH_LONG);
+                                            if (fs1.equals(lshui))
+                                                ShuiMap.put(fs1, Math.max(ShuiMap.get(fs1), r1));
+                                            else
+                                                ShuiMap.put(fs1, r1);
+                                            mDrawingView.ReDrawImage();
                                         }
                                     });
                                     builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -151,23 +185,32 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                     if(bshan==1) {
                         String info = "";
                         for (int j = 0; j < 24; j++) {
-                            info = info + shan.substring(j, j + 1) + ": " + ShanMap.get(shan.substring(j, j + 1)) + "\t\t\t\t\t";
+                            info = info + shan.substring(j, j + 1) + ": " +
+                                    String.format("%04d",ShanMap.get(shan.substring(j, j + 1))) +
+                                    "\t\t\t\t";
                             if (j % 3 == 2)
                                 info = info + "\n";
                         }
+                        info = info.replaceAll(": 000",":     ");
+                        info = info.replaceAll(": 00",":   ");
+                        info = info.replaceAll(": 0",": ");
                         mTextView.setText(info);
                     }else{
                         String info = "";
                         for (int j = 0; j < 24; j++) {
-                            info = info + shui.substring(j, j + 1) + ": " + ShuiMap.get(shui.substring(j, j + 1)) + "\t\t\t\t\t";
+                            info = info + shui.substring(j, j + 1) + ": " +
+                                    String.format("%04d",ShuiMap.get(shui.substring(j, j + 1))) +
+                                    "\t\t\t\t";
                             if (j % 3 == 2)
                                 info = info + "\n";
                         }
+                        info = info.replaceAll(": 000",":     ");
+                        info = info.replaceAll(": 00",":   ");
+                        info = info.replaceAll(": 0",": ");
                         mTextView.setText(info);
                     }
                     break;
                 default:
-
                     break;
             }
         }
