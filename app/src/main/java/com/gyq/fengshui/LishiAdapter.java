@@ -246,32 +246,11 @@ public class LishiAdapter extends BaseAdapter {
                 str += map.get("name") + "\n";
                 str += map.get("note") + "\n";
                 str += map.get("ct") + "\n\n";
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("宝地具体情况");    //设置对话框标题
-                builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
-                final TextView tv = new TextView(context);
-                //tv.setBackgroundResource(R.drawable.fengmian);
-                tv.setTextSize(25);
-                tv.setTextColor(Color.RED);
-                tv.setText(str + getDbValue(dbid).toString());
-                tv.setGravity(Gravity.CENTER_VERTICAL| Gravity.CENTER_HORIZONTAL);
-                tv.setMovementMethod(ScrollingMovementMethod.getInstance());
-                builder.setView(tv);
-//                final TextView tv = (TextView)v.findViewById(R.id.chakan);  //new TextView(context);
-//                builder.setView(tv);
-//                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-//                tv.setText(str + getDbValue(dbid).toString());
-//                tv.setMovementMethod(ScrollingMovementMethod.getInstance());
-                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
-                AlertDialog dialog = builder.create();  //创建对话框
-                dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
-                dialog.show();
+                new Gongju().ShowMsg(v.getContext(),
+                        "宝地具体情况",
+                        str + getDbValue(dbid).toString(),
+                        false,
+                        -1);
             }});
         holder.imageView4.setOnClickListener(new OnClickListener(){
             @Override
@@ -303,9 +282,7 @@ public class LishiAdapter extends BaseAdapter {
                 if(!checkid(dbid))
                     return;
                 name = map.get("name").toString();
-                if(mydb==null) {
-                    mydb = new DatabaseHelper(context);
-                }
+                mydb = new DatabaseHelper(context);
                 String[] fn={"shan01","shan02","shan03","shan04","shan05","shan06",
                         "shan07","shan08","shan09","shan10","shan11","shan12",
                         "shan13","shan14","shan15","shan16","shan17","shan18",
@@ -373,15 +350,23 @@ public class LishiAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // TODO 罗盘
+                Map<String, Object> map = listData.get(arg0);
+                dbid = map.get("id").toString();
+                if(!checkid(dbid))
+                    return;
+                name = map.get("name").toString();
+                FsChartActivity.dbid = dbid;
+                FsChartActivity.name = name;
+                FsChartActivity.context = v.getContext();
                 Intent intent = new Intent(context,FsChartActivity.class);
-                context.startActivity(intent);
+                initMap(dbid);
+                v.getContext().startActivity(intent);
             }});
        return arg1;
     }
     private String getDbValue(String dbid)
     {
-        if(mydb==null)
-            mydb =new DatabaseHelper(context);
+        mydb =new DatabaseHelper(context);
         String[] fn = new String[48];
         for(int i=0;i<24;i++) {
             int k = i + 1;
@@ -411,14 +396,51 @@ public class LishiAdapter extends BaseAdapter {
     }
     private boolean checkid(String dbid)
     {
-        if(mydb==null)
-            mydb =new DatabaseHelper(context);
+        mydb =new DatabaseHelper(context);
         String[] fn = {"shan01"};
         Cursor c1 = mydb.select(dbid,fn);
         //showMsg("刷新getData2 step 3");
         if(c1.getCount()<=0)
             return false;
         return true;
+    }
+    private void initMap(String dbid){
+        mydb =new DatabaseHelper(context);
+        String[] fn = new String[48];
+        for(int i=0;i<24;i++) {
+            int k = i + 1;
+            String shan1 = "shan";
+            if (k < 10)
+                shan1 = shan1 + "0" + k;
+            else
+                shan1 = shan1 + k;
+            String shui1 = "shui";
+            if (k < 10)
+                shui1 = shui1 + "0" + k;
+            else
+                shui1 = shui1 + k;
+            fn[i] = shan1;
+            fn[i+24] = shui1;
+        }
+        //showMsg("刷新getData2 step 2 {"+shan+","+shui+"}");
+        Cursor c1 = mydb.select(dbid,fn);
+        //showMsg("刷新getData2 step 3");
+        while(c1.moveToNext()) {
+            for(int i=0;i<24;i++) {
+                String fs1 = fs24.substring(i, i + 1);
+                int r1 = 0;
+                int r2 = 0;
+                try{
+                    r1 = Integer.parseInt(c1.getString(i));
+                    r2 = Integer.parseInt(c1.getString(i + 24));
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                }
+                FsChartActivity.ShanMap.put(fs1,r1);
+                FsChartActivity.ShuiMap.put(fs1,r2);
+            }
+            return;
+        }
     }
 
 

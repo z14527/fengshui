@@ -340,7 +340,7 @@ public class DrawingView extends View {
         float y11 = 0;
         for(int i=0;i<24;i++){
             String fs1 = FsChartActivity.shui.substring(i,i+1);
-            int r1 = FsChartActivity.ShanMap.get(fs1);
+            int r1 = (int)r*FsChartActivity.ShanMap.get(fs1)/100;
             FsChartActivity.ShuiMap.put(fs1,r1);
             float x1 = (float)(x0 + r1*cos(i*PI/12));
             float y1 = (float)(y0 + r1*sin(i*PI/12));

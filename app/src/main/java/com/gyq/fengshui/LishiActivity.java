@@ -215,8 +215,7 @@ public class LishiActivity extends AppCompatActivity {
 
     private ArrayList<Map<String, Object>> getData() {
         //图片资源
-        if (mydb == null)
-            mydb = new DatabaseHelper(LishiActivity.this);
+        mydb = new DatabaseHelper(LishiActivity.this);
         String[] fn = {"id", "name", "note", "ct"};
         Cursor c1 = null;
         if (key != null)

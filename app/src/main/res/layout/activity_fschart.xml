@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <com.gyq.fengshui.DrawingView
         android:id="@+id/img_screenshot"
         android:layout_width="match_parent"
@@ -17,7 +16,6 @@
         android:layout_weight="1"
         android:background="@color/lightBlack"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/tvmessage"
             android:layout_width="0dp"
@@ -41,13 +39,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_weight="1.3"
+                android:layout_weight="1"
                 android:background="@color/translucent"
                 android:clickable="true"
                 android:fadeScrollbars="false"
                 android:scrollbars="vertical"
                 android:text="@string/tv_to_shui_txt"
-                android:textColor="@color/red"
+                android:textColor="@color/colorAccent"
                 android:textSize="20dp"
                 tools:background="@android:color/holo_blue_light" />
             <TextView
@@ -65,20 +63,56 @@
                 android:textSize="20dp"
                 tools:background="@android:color/holo_purple" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/tvredraw"
+        <LinearLayout
+            android:id="@+id/tv_fs2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@color/translucent"
-            android:clickable="true"
-            android:fadeScrollbars="false"
-            android:scrollbars="vertical"
-            android:text="@string/tv_redraw_txt"
-            android:textColor="@color/red"
-            android:textSize="20dp"
-            tools:background="@android:color/holo_orange_light" />
+            android:background="@color/lightBlack"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvredraw"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/translucent"
+                android:clickable="true"
+                android:fadeScrollbars="false"
+                android:scrollbars="vertical"
+                android:text="@string/tv_redraw_txt"
+                android:textColor="@color/blue"
+                android:textSize="20dp"
+                tools:background="@android:color/holo_orange_light" />
+            <TextView
+                android:id="@+id/tvclear"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/translucent"
+                android:clickable="true"
+                android:fadeScrollbars="false"
+                android:scrollbars="vertical"
+                android:text="@string/tv_clear_txt"
+                android:textColor="@color/red"
+                android:textSize="20dp"
+                tools:background="@android:color/holo_orange_light" />
+            <TextView
+                android:id="@+id/tvsave"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/translucent"
+                android:clickable="true"
+                android:fadeScrollbars="false"
+                android:scrollbars="vertical"
+                android:text="@string/tv_save_txt"
+                android:textColor="@color/blue"
+                android:textSize="20dp"
+                tools:background="@android:color/holo_green_dark" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/paint_bar"
@@ -86,7 +120,6 @@
         android:layout_height="wrap_content"
         android:background="@color/lightBlack"
         android:orientation="horizontal">
-
         <ImageButton
             android:id="@+id/brush"
             style="@style/ButtonStyle"
@@ -94,7 +127,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_pen" />
-
         <ImageButton
             android:id="@+id/color_panel"
             style="@style/ButtonStyle"
@@ -102,7 +134,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_color_red" />
-
         <ImageButton
             android:id="@+id/undo"
             style="@style/ButtonStyle"
@@ -110,7 +141,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_undo" />
-
         <ImageButton
             android:id="@+id/save"
             style="@style/ButtonStyle"
@@ -118,7 +148,5 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_save" />
-
     </LinearLayout>
-
 </LinearLayout>

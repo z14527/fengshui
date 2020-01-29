@@ -31,6 +31,8 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
     private TextView mTvReDraw = null;
     private TextView mTvToShui = null;
     private TextView mTvShanShuiSwitch = null;
+    private TextView mTvClear = null;
+    private TextView mTvSave = null;
     private static int COLOR_PANEL = 0;
     private static int BRUSH = 0;
     private ImageButton mColorPanel;
@@ -39,13 +41,21 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
     private ImageButton mSave;
     public static Map<String,Integer> ShanMap=new HashMap<>();
     public static Map<String,Integer> ShuiMap=new HashMap<>();
-    public static String shan ="庚申坤未丁午丙巳巽辰乙卯甲寅艮丑癸子壬亥乾戌辛酉";
-    private static String lshan = null;
-    public static String shui ="申坤未丁午丙巳巽辰乙卯甲寅艮丑癸子壬亥乾戌辛酉庚";
+    public static String shan ="乙辰巽巳丙午丁未坤申庚酉辛戌乾亥壬子癸丑艮寅甲卯";
+    public static String lshan = null;
+    public static String shui ="辰巽巳丙午丁未坤申庚酉辛戌乾亥壬子癸丑艮寅甲卯乙";
+    //            "申坤未丁午丙巳巽辰乙卯甲寅艮丑癸子壬亥乾戌辛酉庚";
     private static String lshui = null;
     public static int bshan = 1;
     public static AlertDialog.Builder builder = null;
     public static Context context = null;
+    public static int colBlue;
+    public static int colRed;
+    public static int colTl;
+    public static String dbid = "";
+    public static String name = "";
+    private static DatabaseHelper mydb = null;
+    private static String fs24 = "子癸丑艮寅甲卯乙辰巽巳丙午丁未坤申庚酉辛戌乾亥壬";
 
     public static Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -56,6 +66,7 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                     String[] mt3 = mt2.split(":");
                     if(mt3.length>=2){
                         int k = Integer.parseInt(mt3[0]);
+                        final int k1 = k;
                         int r = Integer.parseInt(mt3[1]);
                         if(k>=0 && k<24) {
                             if(bshan==1) {
@@ -77,6 +88,8 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                     info = info.replaceAll(": 000",":     ");
                                     info = info.replaceAll(": 00",":   ");
                                     info = info.replaceAll(": 0",": ");
+                                    mTextView.setTextColor(colRed);
+                                    mTextView.setBackgroundColor(colBlue);
                                     mTextView.setText(info);
                                 }else{
                                     builder = new AlertDialog.Builder(context);
@@ -84,7 +97,7 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                     builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
                                     final EditText edit = new EditText(context);
                                     builder.setView(edit);
-                                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                    builder.setPositiveButton("修改山", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             String shan1 = edit.getText().toString();
@@ -95,11 +108,39 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                             {
                                                 e1.printStackTrace();
                                             }
-                                            Toast.makeText(context,"输入的数值为："+shan1, LENGTH_LONG);
+                                            Toast.makeText(context,"输入的数值为："+shan1, LENGTH_LONG).show();
                                             if (fs1.equals(lshan))
                                                 ShanMap.put(fs1, Math.max(ShanMap.get(fs1), r1));
                                             else
                                                 ShanMap.put(fs1, r1);
+                                            mDrawingView.ReDrawImage();
+                                        }
+                                    });
+                                    builder.setNeutralButton("修改山以及对应的水",new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            String shan1 = edit.getText().toString();
+                                            int r1 = 0;
+                                            try {
+                                                r1 = Integer.parseInt(shan1);
+                                            }catch (Exception e1)
+                                            {
+                                                e1.printStackTrace();
+                                            }
+                                            Toast.makeText(context,"输入的数值为："+shan1, LENGTH_LONG).show();
+                                            String fs2 = "";
+                                            if(k1>0)
+                                                fs2 = shan.substring(k1-1, k1);
+                                            else
+                                                fs2 = shan.substring(23,24);
+                                            if (fs1.equals(lshan)) {
+                                                ShanMap.put(fs1, Math.max(ShanMap.get(fs1), r1));
+                                                ShuiMap.put(fs2, Math.max(ShanMap.get(fs1), r1));
+                                            }
+                                            else {
+                                                ShanMap.put(fs1, r1);
+                                                ShuiMap.put(fs2, r1);
+                                            }
                                             mDrawingView.ReDrawImage();
                                         }
                                     });
@@ -136,6 +177,8 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                     info = info.replaceAll(": 000",":     ");
                                     info = info.replaceAll(": 00",":   ");
                                     info = info.replaceAll(": 0",": ");
+                                    mTextView.setTextColor(colBlue);
+                                    mTextView.setBackgroundColor(colTl);
                                     mTextView.setText(info);
                                 }else{
                                     builder = new AlertDialog.Builder(context);
@@ -154,7 +197,7 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                             {
                                                 e1.printStackTrace();
                                             }
-                                            Toast.makeText(context,"输入的数值为："+shui1, LENGTH_LONG);
+                                            Toast.makeText(context,"输入的数值为："+shui1, LENGTH_LONG).show();
                                             if (fs1.equals(lshui))
                                                 ShuiMap.put(fs1, Math.max(ShuiMap.get(fs1), r1));
                                             else
@@ -194,6 +237,8 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                         info = info.replaceAll(": 000",":     ");
                         info = info.replaceAll(": 00",":   ");
                         info = info.replaceAll(": 0",": ");
+                        mTextView.setTextColor(colRed);
+                        mTextView.setBackgroundColor(colBlue);
                         mTextView.setText(info);
                     }else{
                         String info = "";
@@ -207,6 +252,8 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                         info = info.replaceAll(": 000",":     ");
                         info = info.replaceAll(": 00",":   ");
                         info = info.replaceAll(": 0",": ");
+                        mTextView.setTextColor(colBlue);
+                        mTextView.setBackgroundColor(colTl);
                         mTextView.setText(info);
                     }
                     break;
@@ -221,27 +268,15 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fschart);
-        String[] permissionsGroup=new String[]{Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.INTERNET,
-                Manifest.permission.READ_CONTACTS,
-                Manifest.permission.READ_PHONE_NUMBERS,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_CONTACTS,
-                Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE
-        };
-        RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.requestEach(permissionsGroup)
-                .subscribe(permission -> {
-                    Toast.makeText(this,"权限名称:"+permission.name+",申请结果:"+permission.granted, LENGTH_LONG);
-                });
         initViews();
         initPaintMode();
         loadImage();
+        bshan = 1;
+        mDrawingView.setPenColor(colRed);
+        mDrawingView.ReDrawImage();
     }
     private void initViews() {
+        setTitle("风水大师 - " + name);
         mDrawingView = (DrawingView) findViewById(R.id.img_screenshot);
         mTextView = (TextView)findViewById(R.id.tvmessage);
         mTextView.setMovementMethod(ScrollingMovementMethod.getInstance());
@@ -252,12 +287,24 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                 mDrawingView.ReDrawImage();
             }
         });
+        mTvClear = (TextView)findViewById(R.id.tvclear);
+        mTvClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                new Gongju().ShowMsg(arg0.getContext(),
+                        "提示",
+                        "是否要清除所有山水数据？",
+                        true,
+                        1);
+            }
+        });
         mTvToShui = (TextView)findViewById(R.id.tv_to_shui);
         mTvToShui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 mDrawingView.setPenColor(getColor(R.color.blue));
-                mDrawingView.ToShuiDrawImage();
+                Gongju gj = new Gongju();
+                gj.ShowMsg(arg0.getContext(),"山->水","是否要清除原有水数据？",true,0);
             }
         });
         mTvShanShuiSwitch = (TextView)findViewById(R.id.tv_shan_shui_switch);
@@ -275,26 +322,40 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                 mDrawingView.ReDrawImage();
             }
         });
+        mTvSave = (TextView)findViewById(R.id.tvsave);
+        mTvSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                new Gongju().ShowMsg(arg0.getContext(),
+                        "提示",
+                        "是否要将新数据保存到工程 "+name+" 中？",
+                        true,2);
+            }
+        });
         mBrush = (ImageButton) findViewById(R.id.brush);
         mColorPanel = (ImageButton) findViewById(R.id.color_panel);
         mUndo = (ImageButton) findViewById(R.id.undo);
         mSave = (ImageButton) findViewById(R.id.save);
-
         mBrush.setOnClickListener(this);
         mColorPanel.setOnClickListener(this);
         mUndo.setOnClickListener(this);
         mSave.setOnClickListener(this);
         initPaintMode();
-        for(int i=0;i<24;i++) {
-            ShanMap.put(shan.substring(i, i + 1), 0);
-            ShuiMap.put(shui.substring(i, i + 1), 0);
+        if(dbid.equals("")) {
+            for (int i = 0; i < 24; i++) {
+                ShanMap.put(shan.substring(i, i + 1), 0);
+                ShuiMap.put(shui.substring(i, i + 1), 0);
+            }
         }
     }
 
     private void initPaintMode() {
         mDrawingView.initializePen();
         mDrawingView.setPenSize(10);
-        mDrawingView.setPenColor(getColor(R.color.red));
+        colBlue = getColor(R.color.blue);
+        colRed = getColor(R.color.red);
+        colTl = getColor(R.color.translucent);
+        mDrawingView.setPenColor(colRed);
     }
 
     @Override
@@ -328,4 +389,52 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.raw.fs);
         mDrawingView.loadImage(bitmap);
     }
+    public static void shan2shui(){
+        for(int i=0;i<24;i++) {
+            String fs1 = shui.substring(i, i + 1);
+            String fs2 = "";
+            if(i>0)
+                fs2 = shui.substring(i-1, i);
+            else
+                fs2 = shui.substring(23,24);
+            int r1 = ShanMap.get(fs1);
+            ShuiMap.put(fs2, r1);
+        }
+        mDrawingView.setPenColor(colBlue);
+        bshan = 0;
+        mDrawingView.ReDrawImage();
+    }
+    public static void reDraw(){
+        for (int i = 0; i < 24; i++) {
+            ShanMap.put(shan.substring(i, i + 1), 0);
+            ShuiMap.put(shui.substring(i, i + 1), 0);
+        }
+        mDrawingView.ReDrawImage();
+    }
+    public static void saveData(){
+        mydb = new DatabaseHelper(context);
+        String[] fn = new String[48];
+        for(int i=0;i<24;i++) {
+            int k = i + 1;
+            String shan1 = "shan";
+            if (k < 10)
+                shan1 = shan1 + "0" + k;
+            else
+                shan1 = shan1 + k;
+            String shui1 = "shui";
+            if (k < 10)
+                shui1 = shui1 + "0" + k;
+            else
+                shui1 = shui1 + k;
+            fn[i] = shan1;
+            fn[i+24] = shui1;
+        }
+        for(int i=0;i<24;i++) {
+            String fs1 = fs24.substring(i,i+1);
+            mydb.update(dbid,fn[i],""+ShanMap.get(fs1));
+            mydb.update(dbid,fn[i+24],""+ShuiMap.get(fs1));
+        }
+        Toast.makeText(context.getApplicationContext(),"已经保存!",Toast.LENGTH_LONG).show();
+    }
+
 }

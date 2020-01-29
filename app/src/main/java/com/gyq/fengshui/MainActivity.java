@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity  {
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.requestEach(permissionsGroup)
                 .subscribe(permission -> {
-                    Toast.makeText(this,"权限名称:"+permission.name+",申请结果:"+permission.granted, LENGTH_LONG);
+                    Toast.makeText(this,"权限名称:"+permission.name+",申请结果:"+permission.granted, LENGTH_LONG).show();
                 });
 //        Permission permission = new Permission(permissionString, granted, shouldShowRequestPermissionRationale);
 //        when(rxPermissions.requestEach(permissionString)).thenReturn(Observable.just(permission));
@@ -202,14 +202,14 @@ class Gongju {
         }catch(SecurityException e1){
             e1.printStackTrace();
         }
-        Toast.makeText(at.getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(at.getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
         if (phoneNumber1.equals(""))
             phoneNumber1 = "13683559392";
         return phoneNumber1;
     }
-    public void ShowMsg(Context context,String msg){
+    public void ShowMsg(Context context,String title, String msg,boolean cancel,int type){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("宝地具体情况");    //设置对话框标题
+        builder.setTitle(title);    //设置对话框标题
         builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
         final TextView tv = new TextView(context);
         //tv.setBackgroundResource(R.drawable.fengmian);
@@ -219,12 +219,25 @@ class Gongju {
         tv.setGravity(Gravity.CENTER_VERTICAL| Gravity.CENTER_HORIZONTAL);
         tv.setMovementMethod(ScrollingMovementMethod.getInstance());
         builder.setView(tv);
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                if(type==0)
+                    FsChartActivity.shan2shui();
+                if(type==1)
+                    FsChartActivity.reDraw();
+                if(type==2)
+                    FsChartActivity.saveData();
             }
         });
+        if(cancel)
+            builder.setNegativeButton("取消",new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
         builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
         AlertDialog dialog = builder.create();  //创建对话框
         dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏

@@ -69,8 +69,7 @@
                             fs1[i] = "0";
                             fs2[i] = "0";
                         }
-                        if (mydb == null)
-                            mydb = new DatabaseHelper(Input_Activity.this);
+                        mydb = new DatabaseHelper(Input_Activity.this);
                         dbid = java.util.UUID.randomUUID().toString();
                         //                          String note1 = "经纬度为（" + getLngAndLat(Input_Activity.this) + "）";
                         String note1 = "经纬度为（无法获取）";
@@ -113,8 +112,7 @@
                         public void onClick(DialogInterface dialog, int which) {
                             String note = edit.getText().toString();
                             //    Toast.makeText(Input_Activity.this, "你输入的是: " + name, Toast.LENGTH_SHORT).show();
-                            if(mydb == null)
-                                mydb =new DatabaseHelper(Input_Activity.this);
+                            mydb =new DatabaseHelper(Input_Activity.this);
                             mydb.update(dbid,"note",note);
                             textNote.setText(note);
                         }
@@ -141,8 +139,7 @@
                         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (mydb == null)
-                                    mydb = new DatabaseHelper(Input_Activity.this);
+                                mydb = new DatabaseHelper(Input_Activity.this);
                                 mydb.delete(dbid);
                                 finish();
                             }
@@ -182,8 +179,7 @@
             return super.onKeyDown(keyCode, event);
         }
         private ArrayList<Map<String,Object>> getData(String id){
-            if(mydb==null)
-                mydb =new DatabaseHelper(Input_Activity.this);
+            mydb =new DatabaseHelper(Input_Activity.this);
             String[] fn={"shan01","shan02","shan03","shan04","shan05","shan06",
                     "shan07","shan08","shan09","shan10","shan11","shan12",
                     "shan13","shan14","shan15","shan16","shan17","shan18",
@@ -212,8 +208,7 @@
         {
             final String[] pt = new String[24];
             if(dbid != null){
-                if(mydb==null)
-                    mydb =new DatabaseHelper(Input_Activity.this);
+                mydb =new DatabaseHelper(Input_Activity.this);
                 String[] fn={"shan01","shan02","shan03","shan04","shan05","shan06",
                         "shan07","shan08","shan09","shan10","shan11","shan12",
                         "shan13","shan14","shan15","shan16","shan17","shan18",
@@ -278,8 +273,7 @@
             return listItems;
         }
         private String getDbnote(String dbid) {
-            if (mydb == null)
-                mydb = new DatabaseHelper(Input_Activity.this);
+            mydb = new DatabaseHelper(Input_Activity.this);
             //showMsg("刷新getData2 step 2 {"+shan+","+shui+"}");
             String[] fn = {"note"};
             Cursor c1 = mydb.select(dbid, fn);
@@ -293,8 +287,7 @@
         }
         private String getDbValue()
         {
-            if(mydb==null)
-                return "";
+            mydb=  new DatabaseHelper(Input_Activity.this);
             int k = myAdapter.fid + 1;
             String shan = "shan";
             if(k<10)
