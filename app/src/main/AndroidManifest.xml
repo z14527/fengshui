@@ -21,7 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FsChartActivity"></activity>
+        <activity android:name=".FsChartActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +32,7 @@
         <activity android:name=".Input_Activity" />
         <activity android:name=".DataActivity" />
         <activity android:name=".LishiActivity" />
+        <activity android:name=".AddLpViewActivity"></activity>
     </application>
 
 </manifest>
