@@ -148,9 +148,6 @@ public class DrawingView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // 如果你的界面有多个模式，你需要有个变量来判断当前是否可draw
-        if (!mDrawMode) {
-            return false;
-        }
         float x;
         float y;
         if (mProportion != 0) {
@@ -253,6 +250,13 @@ public class DrawingView extends View {
         super.setBackgroundColor(color);
     }
 
+    public void setDrawMode(boolean mode){
+        mDrawMode = mode;
+    }
+    public boolean getDrawMode(){
+        return mDrawMode;
+    }
+
     /**
      * This method should ONLY be called by clicking paint toolbar(outer class)
      */
@@ -327,35 +331,6 @@ public class DrawingView extends View {
         mCanvas.drawPath(mPath, mPaint);
         invalidate();
         sendMsg("", 5);
-    }
-    public void ToShuiDrawImage() {
-        if(FsChartActivity.bshan == 0)
-            return;
-        mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-        loadImage(mOriginBitmap);
-        //savePath.removeAll().remove();
-        mPath = new Path();
-        mPath.reset();
-        float x11 = 0;
-        float y11 = 0;
-        for(int i=0;i<24;i++){
-            String fs1 = FsChartActivity.shui.substring(i,i+1);
-            int r1 = (int)r*FsChartActivity.ShanMap.get(fs1)/100;
-            FsChartActivity.ShuiMap.put(fs1,r1);
-            float x1 = (float)(x0 + r1*cos(i*PI/12));
-            float y1 = (float)(y0 + r1*sin(i*PI/12));
-            if(i==0) {
-                mPath.moveTo(x1, y1);
-                x11 = x1;
-                y11 = y1;
-            }
-            else
-                mPath.lineTo(x1,y1);
-            mCanvas.drawPath(mPath, mPaint);
-        }
-        mPath.lineTo(x11,y11);
-        mCanvas.drawPath(mPath, mPaint);
-        invalidate();
     }
     public void undo() {
         if (savePath != null && savePath.size() > 0) {
@@ -482,9 +457,6 @@ public class DrawingView extends View {
                 break;
             }
         }
-    //    new Gongju().ShowMsg(getContext(),"x0="+x0+";y0="+y0+";r2="+r2);
-    //    new Gongju().ShowMsg(getContext(),"x1="+x1+";y1="+y1+";b2="+b2);
         r = (float)sqrt((x1-x0)*(x1-x0)+(y1-y0)*(y1-y0));
-    //    new Gongju().ShowMsg(getContext(),"x0="+x0+";y0="+y0+";r="+r);
     }
 }
