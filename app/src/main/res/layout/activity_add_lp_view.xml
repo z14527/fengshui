@@ -137,6 +137,17 @@
             android:background="@android:color/darker_gray"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tv_save"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="50dip"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="保存"
+                android:background="@android:color/darker_gray"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
     </LinearLayout>
     </LinearLayout>
 </LinearLayout>

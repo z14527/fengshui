@@ -32,7 +32,8 @@
         <activity android:name=".Input_Activity" />
         <activity android:name=".DataActivity" />
         <activity android:name=".LishiActivity" />
-        <activity android:name=".AddLpViewActivity"></activity>
+        <activity android:name=".AddLpViewActivity" />
+        <activity android:name=".DiejiaViewActivity"></activity>
     </application>
 
 </manifest>

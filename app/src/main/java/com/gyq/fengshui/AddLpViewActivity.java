@@ -3,6 +3,7 @@ package com.gyq.fengshui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Bitmap;
@@ -16,6 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Calendar;
+import java.util.Date;
+import com.zhy.base.fileprovider.FileProvider7;
+
 public class AddLpViewActivity extends AppCompatActivity {
     ImageView imageView = null;
     //  private ImageView mImageView;
@@ -23,7 +30,8 @@ public class AddLpViewActivity extends AppCompatActivity {
     private TextView tvUp = null, tvDown = null,
             tvLeft = null, tvRight = null, tvInc = null,
             tvDec = null, tvRotateRight = null,
-            tvRotateLeft = null, tvLpCross = null,tvPic = null;
+            tvRotateLeft = null, tvLpCross = null,
+            tvPic = null, tvSave = null;
     private int top1 = 0, top2 =0,
             left1 = 0, left2 = 0,
             alpha1 = 35, alpha2 = 35;
@@ -32,11 +40,14 @@ public class AddLpViewActivity extends AppCompatActivity {
     private boolean bCross = false;
     public static final int REQUEST_PICK_IMAGE = 11101;
     private int w = 0, h = 0;
+    private String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_lp_view);
+        String name = getIntent().getStringExtra("name");
+        setTitle("风水大师 （" + name + "）");
         imageView = (ImageView) findViewById(R.id.pic);
         bitmap1 = BitmapFactory.decodeResource(this.getResources(), R.drawable.fqd);
         bitmap2 = BitmapFactory.decodeResource(this.getResources(), R.drawable.lp);
@@ -164,12 +175,31 @@ public class AddLpViewActivity extends AppCompatActivity {
                 getImage();
             }
         });
+        tvSave = (TextView) findViewById(R.id.tv_save);
+        tvSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                String name = getIntent().getStringExtra("name");
+                File file;
+                String filePath = Environment.getExternalStorageDirectory().getPath()+"/download/";
+                String filename  = name + ".png";
+                FileOutputStream out = null;
+                try {
+                    file = new File(filePath, filename);
+                    out = new FileOutputStream(file);
+                    mergeBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+                    Toast.makeText(arg0.getContext(),"保存到文件："+ name +" 成功！",Toast.LENGTH_LONG).show();
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                }
+            }
+        });
 //可以使用任何ImageView支持的方式设置图片
-        //   imageView.setImageResource(R.drawable.my_pic);
+    //   imageView.setImageResource(R.drawable.my_pic);
 //or...
-        //  imageView.setImageBitmap(bitmap);
-        //initViews();
-        //startMerge();
+    //  imageView.setImageBitmap(bitmap);
+    //initViews();
+    //startMerge();
     }
 
     private Bitmap mergeBitmap() {
@@ -244,6 +274,9 @@ public class AddLpViewActivity extends AppCompatActivity {
         bitmap1 = BitmapFactory.decodeFile(path);
         Bitmap cBitmap = mergeBitmap();
         imageView.setImageBitmap(cBitmap);
+    }
+    public void setName(String name1){
+        name = name1;
     }
 }
 

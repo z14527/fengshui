@@ -1,6 +1,7 @@
 package com.gyq.fengshui;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
@@ -22,6 +23,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.text.method.ScrollingMovementMethod;
@@ -193,20 +195,20 @@ public class LishiAdapter extends BaseAdapter {
 
         arg1 = mInflater.inflate(R.layout.lishi_layout_temp, null);
         //需要为每个控件指定内容，如指定textView的显示文字（这就是引用的listData作用）
-        holder.imageView1 = (ImageView) arg1.findViewById(R.id.item_img);
-        holder.imageView1.setImageResource((Integer)listData.get(arg0).get("img")) ;
         holder.textView1 = (TextView)arg1.findViewById(R.id.item_title) ;
         holder.textView1.setText(listData.get(arg0).get("name").toString()) ;
         holder.textView2 = (TextView)arg1.findViewById(R.id.item_content) ;
         holder.textView2.setText(listData.get(arg0).get("note").toString()) ;
         holder.textView3 = (TextView)arg1.findViewById(R.id.item_date) ;
         holder.textView3.setText(listData.get(arg0).get("ct").toString()) ;
-        holder.imageView4 = (ImageView) arg1.findViewById(R.id.image_view4);
-        holder.imageView5 = (ImageView) arg1.findViewById(R.id.image_view5);
-        holder.imageView6 = (ImageView) arg1.findViewById(R.id.image_view6);
-        holder.imageView7 = (ImageView) arg1.findViewById(R.id.image_view7);
-//       holder.imageView6 = (ImageView) arg1.findViewById(R.id.image_view6);
-        holder.imageView1.setOnClickListener(new OnClickListener(){
+        holder.imageViewFdj = (ImageView) arg1.findViewById(R.id.image_view_fdj);
+        holder.imageViewLp = (ImageView) arg1.findViewById(R.id.image_view_lp);
+        holder.imageViewCross = (ImageView) arg1.findViewById(R.id.image_view_cross);
+        holder.imageViewDiejia = (ImageView) arg1.findViewById(R.id.image_view_diejia);
+        holder.imageViewChakan = (ImageView) arg1.findViewById(R.id.image_view_chakan);
+        holder.imageViewXiugai = (ImageView) arg1.findViewById(R.id.image_view_xiugai);
+        holder.imageViewPingfen = (ImageView) arg1.findViewById(R.id.image_view_pingfen);
+        holder.imageViewFdj.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 // TODO 查找
@@ -235,7 +237,7 @@ public class LishiAdapter extends BaseAdapter {
                 dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
                 dialog.show();
             }});
-        holder.imageView6.setOnClickListener(new OnClickListener(){
+        holder.imageViewChakan.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 Map<String, Object> map = listData.get(arg0);
@@ -252,7 +254,7 @@ public class LishiAdapter extends BaseAdapter {
                         false,
                         -1);
             }});
-        holder.imageView4.setOnClickListener(new OnClickListener(){
+        holder.imageViewXiugai.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 // TODO 修改
@@ -268,7 +270,7 @@ public class LishiAdapter extends BaseAdapter {
                 intent.putExtra("note",note);
                 context.startActivity(intent);
             }});
-        holder.imageView5.setOnClickListener(new OnClickListener(){
+        holder.imageViewPingfen.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 // TODO 评分
@@ -346,7 +348,7 @@ public class LishiAdapter extends BaseAdapter {
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 getApplicationContext().startActivity(intent);
             }});
-        holder.imageView7.setOnClickListener(new OnClickListener(){
+        holder.imageViewLp.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
                 // TODO 罗盘
@@ -360,6 +362,40 @@ public class LishiAdapter extends BaseAdapter {
                 FsChartActivity.context = v.getContext();
                 Intent intent = new Intent(context,FsChartActivity.class);
                 initMap(dbid);
+                v.getContext().startActivity(intent);
+            }});
+        holder.imageViewCross.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // TODO 罗盘多层叠加
+                Intent intent = new Intent(context,AddLpViewActivity.class);
+                Map<String, Object> map = listData.get(arg0);
+                dbid = map.get("id").toString();
+                if(!checkid(dbid))
+                    return;
+                name = map.get("name").toString();
+                intent.putExtra("name",name);
+                v.getContext().startActivity(intent);
+            }});
+        holder.imageViewDiejia.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // TODO 罗盘叠加查看
+                Map<String, Object> map = listData.get(arg0);
+                dbid = map.get("id").toString();
+                if(!checkid(dbid))
+                    return;
+                name = map.get("name").toString();
+                String filePath = Environment.getExternalStorageDirectory().getPath()+"/download/";
+                String filename  = name + ".png";
+                File file = new File(filePath+filename);
+                if(!file.exists()){
+                    Toast.makeText(v.getContext(),"本地的罗盘叠加图不存在！",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Intent intent = new Intent(context,DiejiaViewActivity.class);
+                intent.putExtra("path",filePath+filename);
+                intent.putExtra("name",name);
                 v.getContext().startActivity(intent);
             }});
        return arg1;
@@ -451,11 +487,13 @@ public class LishiAdapter extends BaseAdapter {
 
     public class ViewHolder
     {
-        public ImageView imageView1 ;
-        public ImageView imageView4 ;
-        public ImageView imageView5 ;
-        public ImageView imageView6 ;
-        public ImageView imageView7 ;
+        public ImageView imageViewFdj ;
+        public ImageView imageViewLp ;
+        public ImageView imageViewCross ;
+        public ImageView imageViewDiejia;
+        public ImageView imageViewChakan ;
+        public ImageView imageViewXiugai ;
+        public ImageView imageViewPingfen ;
 
 
   //      public ImageView imageView6 ;

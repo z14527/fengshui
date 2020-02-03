@@ -363,11 +363,11 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.brush:
                 mBrush.setImageResource(BRUSH == 0 ? R.drawable.ic_brush : R.drawable.ic_pen);
-                if(mDrawingView.getDrawMode())
-                    mDrawingView.setDrawMode(false);
-                else
-                    mDrawingView.setDrawMode(true);
-                //mDrawingView.setPenSize(BRUSH == 0 ? 40 : 10);
+//                if(mDrawingView.getDrawMode())
+//                    mDrawingView.setDrawMode(false);
+//                else
+//                    mDrawingView.setDrawMode(true);
+                mDrawingView.setPenSize(BRUSH == 0 ? 40 : 10);
                 BRUSH = 1 - BRUSH;
                 break;
             case R.id.color_panel:

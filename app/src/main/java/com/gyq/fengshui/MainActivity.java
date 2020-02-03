@@ -46,6 +46,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,14 +74,15 @@ public class MainActivity extends AppCompatActivity  {
                 Manifest.permission.READ_CONTACTS,
                 Manifest.permission.READ_PHONE_NUMBERS,
                 Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_CONTACTS,
+              //  Manifest.permission.WRITE_CONTACTS,
                 Manifest.permission.ACCESS_NETWORK_STATE,
                 Manifest.permission.ACCESS_WIFI_STATE
         };
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.requestEach(permissionsGroup)
                 .subscribe(permission -> {
-                    Toast.makeText(this,"权限名称:"+permission.name+",申请结果:"+permission.granted, LENGTH_LONG).show();
+                    if(!permission.granted)
+                        Toast.makeText(this,"权限名称:"+permission.name+",申请结果:"+permission.granted, LENGTH_LONG).show();
                 });
         final ImageButton btxbd = (ImageButton) findViewById(R.id.imgBtnXBD);
         btxbd.setOnClickListener(new View.OnClickListener(){
@@ -107,6 +109,14 @@ public class MainActivity extends AppCompatActivity  {
                                     @Override
                                     public void onClick(View v) {
                                         Intent intent = new Intent(MainActivity.this,AddLpViewActivity.class);
+                                        String name = "";
+                                        Calendar calendar = Calendar.getInstance();
+                                        int year = calendar.get(Calendar.YEAR);
+                                        int month = calendar.get(Calendar.MONTH) + 1;
+                                        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                                        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                                        name = "风水叠加" + year + month + day + hour;
+                                        intent.putExtra("name",name);
                                         startActivity(intent);
                                     }
                                 });
@@ -135,8 +145,14 @@ class Gongju {
             e1.printStackTrace();
         }
      //   Toast.makeText(at.getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
-        if (phoneNumber1.equals(""))
-            phoneNumber1 = "13683559392";
+        if (phoneNumber1.equals("")) {
+            try {
+                phoneNumber1 = tm.getImei();
+            }catch(SecurityException e1){
+                e1.printStackTrace();
+            }
+//            phoneNumber1 = "13683559392";
+        }
         return phoneNumber1;
     }
     public void ShowMsg(Context context,String title, String msg,boolean cancel,int type){
@@ -151,6 +167,7 @@ class Gongju {
         tv.setGravity(Gravity.CENTER_VERTICAL| Gravity.CENTER_HORIZONTAL);
         tv.setMovementMethod(ScrollingMovementMethod.getInstance());
         builder.setView(tv);
+        tv.setTextColor(Color.BLACK);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

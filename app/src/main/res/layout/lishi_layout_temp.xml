@@ -11,63 +11,70 @@
         android:orientation="horizontal"
         android:descendantFocusability="blocksDescendants"
         android:background="@drawable/lsbj">
-
-        <ImageView
-            android:id="@+id/item_img"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:focusable="false"
-            android:src="@drawable/fdj" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:divider="#00000000"
             android:dividerHeight="0dip" >
-
             <TextView
                 android:id="@+id/item_title"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="标题"
                 android:textColor="#F00"
-                android:textSize="20sp" />
-
+                android:textSize="15sp" />
             <TextView
                 android:id="@+id/item_content"
-                android:layout_width="120dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="内容"
                 android:textColor="#000"
-                android:textSize="16sp" />
+                android:textSize="10sp" />
         </LinearLayout>
         <ImageView
-            android:id="@+id/image_view7"
-            android:layout_width="45sp"
-            android:layout_height="50sp"
+            android:id="@+id/image_view_fdj"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:focusable="false"
+            android:src="@drawable/fdj" />
+        <ImageView
+            android:id="@+id/image_view_lp"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
             android:focusable="false"
             android:src="@drawable/lp" />
         <ImageView
-            android:id="@+id/image_view6"
-            android:layout_width="45sp"
-            android:layout_height="50sp"
+            android:id="@+id/image_view_cross"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:focusable="false"
+            android:src="@drawable/cross" />
+        <ImageView
+            android:id="@+id/image_view_diejia"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:focusable="false"
+            android:src="@drawable/diejia" />
+        <ImageView
+            android:id="@+id/image_view_chakan"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
             android:focusable="false"
             android:src="@drawable/chakan" />
         <ImageView
-            android:id="@+id/image_view4"
-            android:layout_width="45sp"
-            android:layout_height="50sp"
+            android:id="@+id/image_view_xiugai"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
             android:focusable="false"
             android:src="@drawable/xiugai" />
         <ImageView
-            android:id="@+id/image_view5"
-            android:layout_width="45sp"
-            android:layout_height="50sp"
+            android:id="@+id/image_view_pingfen"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
             android:focusable="false"
             android:src="@drawable/pingfen"/>
     </LinearLayout>
-
     <TextView
         android:id="@+id/item_date"
         android:layout_width="wrap_content"
@@ -77,4 +84,5 @@
         android:text="时间"
         android:textColor="#00F"
         android:textSize="16sp" />
+
 </RelativeLayout>
