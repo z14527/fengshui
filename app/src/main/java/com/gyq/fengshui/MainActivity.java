@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity  {
                     data_url = "http://" + ip + "/data/";
                     pf_url = "http://" + ip + "/pf.php";
                     Toast.makeText(getApplicationContext(),"服务器已经自定义设置！", Toast.LENGTH_LONG).show();
-                    setTitle("风水大师（" + ip + "测试）");
+                    setTitle("风水大师（" + ip + "自定义）");
                 }
             });
             builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
