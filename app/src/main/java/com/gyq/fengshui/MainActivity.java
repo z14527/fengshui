@@ -35,6 +35,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -63,10 +64,19 @@ import io.reactivex.functions.Action;
 import static android.widget.Toast.*;
 
 public class MainActivity extends AppCompatActivity  {
+    public static String up_url = "";
+    public static String listdb_url = "";
+    public static String data_url = "";
+    public static String pf_url = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("风水大师（远程）");
+        up_url = getString(R.string.up_url);
+        listdb_url = getString(R.string.listdb_url);
+        data_url = getString(R.string.data_url);
+        pf_url = getString(R.string.pf_url);
         String[] permissionsGroup=new String[]{Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -106,23 +116,23 @@ public class MainActivity extends AppCompatActivity  {
    //     btlsbd.setVisibility(View.INVISIBLE);
         ImageButton btdl = (ImageButton) findViewById(R.id.imgBtnDL);
         btdl.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(MainActivity.this,AddLpViewActivity.class);
-                                        String name = "";
-                                        Calendar calendar = Calendar.getInstance();
-                                        int year = calendar.get(Calendar.YEAR);
-                                        int month = calendar.get(Calendar.MONTH) + 1;
-                                        int day = calendar.get(Calendar.DAY_OF_MONTH);
-                                        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                                        name = "风水叠加" + year + month + day + hour;
-                                        intent.putExtra("name",name);
-                                        startActivity(intent);
-                                    }
-                                });
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,AddLpViewActivity.class);
+                String name = "";
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                name = "风水叠加" + year + month + day + hour;
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
         if(notHasLightSensorManager()) {
-           btxbd.setEnabled(false);
-           btlsbd.setEnabled(false);
+            btxbd.setEnabled(false);
+            btlsbd.setEnabled(false);
         }
     }
     public Boolean notHasLightSensorManager() {
@@ -133,6 +143,78 @@ public class MainActivity extends AppCompatActivity  {
         } else {
             return false;
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.remote_setting) {
+            up_url = getString(R.string.up_url);
+            listdb_url = getString(R.string.listdb_url);
+            data_url = getString(R.string.data_url);
+            pf_url = getString(R.string.pf_url);
+            Toast.makeText(this,"已经设置为远程服务器模式！",
+                    Toast.LENGTH_LONG).show();
+            setTitle("风水大师（远程）");
+        }
+        if (id == R.id.local_setting) {
+            up_url = getString(R.string.local_up_url);
+            listdb_url = getString(R.string.local_listdb_url);
+            data_url = getString(R.string.local_data_url);
+            pf_url = getString(R.string.local_pf_url);
+            Toast.makeText(this,"已经设置为本地服务器模式！",
+                    Toast.LENGTH_LONG).show();
+            setTitle("风水大师（本地）");
+        }
+        if (id == R.id.test_setting) {
+            up_url = getString(R.string.test_up_url);
+            listdb_url = getString(R.string.test_listdb_url);
+            data_url = getString(R.string.test_data_url);
+            pf_url = getString(R.string.test_pf_url);
+            Toast.makeText(this,"已经设置为本地测试模式！",
+                    Toast.LENGTH_LONG).show();
+            setTitle("风水大师（测试）");
+        }
+        if (id == R.id.custom_setting) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("请输入服务器地址：");    //设置对话框标题
+            builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
+            final EditText edit = new EditText(this);
+            builder.setView(edit);
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+//                    <string name="local_up_url">http://127.0.0.1:8080/up.php</string>
+//    <string name="local_listdb_url">http://127.0.0.1:8080/listdb.php</string>
+//    <string name="local_data_url">http://127.0.0.1:8080/data/</string>
+//    <string name="local_pf_url">http://127.0.0.1:8080/pf.php</string>
+                    String ip = edit.getText().toString();
+                    up_url = "http://" + ip + "/up.php";
+                    listdb_url = "http://" + ip + "/listdb.php";
+                    data_url = "http://" + ip + "/data/";
+                    pf_url = "http://" + ip + "/pf.php";
+                    Toast.makeText(getApplicationContext(),"服务器已经自定义设置！", Toast.LENGTH_LONG).show();
+                    setTitle("风水大师（" + ip + "测试）");
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getApplicationContext(), "你点了取消", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
+            AlertDialog dialog = builder.create();  //创建对话框
+            dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+            dialog.show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 class Gongju {
@@ -151,7 +233,6 @@ class Gongju {
             }catch(SecurityException e1){
                 e1.printStackTrace();
             }
-//            phoneNumber1 = "13683559392";
         }
         return phoneNumber1;
     }
@@ -162,12 +243,12 @@ class Gongju {
         final TextView tv = new TextView(context);
         //tv.setBackgroundResource(R.drawable.fengmian);
         tv.setTextSize(25);
-        tv.setTextColor(Color.RED);
+        tv.setTextColor(Color.BLACK);
         tv.setText(msg);
         tv.setGravity(Gravity.CENTER_VERTICAL| Gravity.CENTER_HORIZONTAL);
         tv.setMovementMethod(ScrollingMovementMethod.getInstance());
         builder.setView(tv);
-        tv.setTextColor(Color.BLACK);
+        tv.setTextColor(Color.RED);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

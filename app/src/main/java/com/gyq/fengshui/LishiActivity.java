@@ -261,7 +261,8 @@ public class LishiActivity extends AppCompatActivity {
         //用HttpClient发送请求，分为五步
 //第一步：创建HttpClient对象
         HttpClient client = new DefaultHttpClient();//创建一个发送请求的客户端
-        HttpPost post = new HttpPost(getString(R.string.up_url));//创建Post请求对象
+ //       HttpPost post = new HttpPost(getString(R.string.up_url));//创建Post请求对象
+        HttpPost post = new HttpPost(MainActivity.up_url);//创建Post请求对象
         //----------------------------以JSON方式请求-----------------------
         JSONObject jsonObj = new JSONObject();//创建一个json对象
         try {
@@ -333,7 +334,8 @@ public class LishiActivity extends AppCompatActivity {
         //第一步：创建HttpClient对象
         HttpClient httpCient = new DefaultHttpClient();
         //第二步：创建代表请求的对象,参数是访问的服务器地址
-        HttpGet httpGet = new HttpGet(getString(R.string.listdb_url) + "?p=" + (new Gongju().getNumber(this)));
+//        HttpGet httpGet = new HttpGet(getString(R.string.listdb_url) + "?p=" + (new Gongju().getNumber(this)));
+        HttpGet httpGet = new HttpGet(MainActivity.listdb_url + "?p=" + (new Gongju().getNumber(this)));
         ArrayList<NameValuePair> headerList = new ArrayList<NameValuePair>();
         headerList.add(new BasicNameValuePair("Content-Type",
                 "text/html; charset=utf-8"));
@@ -362,7 +364,8 @@ public class LishiActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(getApplicationContext(), "选择的历史数据库为：" + dbs[which], Toast.LENGTH_SHORT).show();
-                                if (getDownloadFile2Cache(getString(R.string.data_url) + dbs[which],
+//                                if (getDownloadFile2Cache(getString(R.string.data_url) + dbs[which],
+                                if (getDownloadFile2Cache(MainActivity.data_url + dbs[which],
                                         getApplicationContext().getDatabasePath("fengshui.db").getAbsolutePath()))
                                     Toast.makeText(getApplicationContext(), "下载成功！请退出重新进入历史宝地刷新数据！", Toast.LENGTH_SHORT).show();
                                 else

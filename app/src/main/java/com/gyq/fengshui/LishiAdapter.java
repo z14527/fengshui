@@ -344,7 +344,8 @@ public class LishiAdapter extends BaseAdapter {
         //        intent.putExtra("url",url);
         //        intent.putExtra("name",name);
         //        getApplicationContext().startActivity(intent);
-                Uri uri = Uri.parse(getApplicationContext().getString(R.string.pf_url)+"?shan=" + shan + "&shui=" + shui + "&plus1=" + plus1 + "&plus2=" + plus2);
+//                Uri uri = Uri.parse(getApplicationContext().getString(R.string.pf_url)+"?shan=" + shan + "&shui=" + shui + "&plus1=" + plus1 + "&plus2=" + plus2);
+                Uri uri = Uri.parse(MainActivity.pf_url+"?shan=" + shan + "&shui=" + shui + "&plus1=" + plus1 + "&plus2=" + plus2);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 getApplicationContext().startActivity(intent);
             }});

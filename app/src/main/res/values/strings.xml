@@ -19,4 +19,16 @@
     <string name="tv_shan_shui_switch_txt">山水切换</string>
     <string name="tv_save_txt">保存</string>
     <string name="tv_clear_txt">清除所有数据</string>
+    <string name="remote_set">远程设置</string>
+    <string name="local_set">本地设置</string>
+    <string name="test_set">测试设置</string>
+    <string name="custom_set">自定义</string>
+    <string name="local_up_url">http://127.0.0.1:8080/up.php</string>
+    <string name="local_listdb_url">http://127.0.0.1:8080/listdb.php</string>
+    <string name="local_data_url">http://127.0.0.1:8080/data/</string>
+    <string name="local_pf_url">http://127.0.0.1:8080/pf.php</string>
+    <string name="test_up_url">http://192.168.1.12/up.php</string>
+    <string name="test_listdb_url">http://192.168.1.12/listdb.php</string>
+    <string name="test_data_url">http://192.168.1.12/data/</string>
+    <string name="test_pf_url">http://192.168.1.12/pf.php</string>
 </resources>
