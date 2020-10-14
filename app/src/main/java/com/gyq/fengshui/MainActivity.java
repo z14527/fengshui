@@ -153,16 +153,6 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.remote_setting) {
-            up_url = getString(R.string.up_url);
-            listdb_url = getString(R.string.listdb_url);
-            data_url = getString(R.string.data_url);
-            pf_url = getString(R.string.pf_url);
-            Toast.makeText(this,"已经设置为远程服务器模式！",
-                    Toast.LENGTH_LONG).show();
-            setTitle("风水大师（远程）");
-        }
         if (id == R.id.local_setting) {
             up_url = getString(R.string.local_up_url);
             listdb_url = getString(R.string.local_listdb_url);
@@ -190,10 +180,6 @@ public class MainActivity extends AppCompatActivity  {
             builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-//                    <string name="local_up_url">http://127.0.0.1:8080/up.php</string>
-//    <string name="local_listdb_url">http://127.0.0.1:8080/listdb.php</string>
-//    <string name="local_data_url">http://127.0.0.1:8080/data/</string>
-//    <string name="local_pf_url">http://127.0.0.1:8080/pf.php</string>
                     String ip = edit.getText().toString();
                     up_url = "http://" + ip + "/up.php";
                     listdb_url = "http://" + ip + "/listdb.php";
