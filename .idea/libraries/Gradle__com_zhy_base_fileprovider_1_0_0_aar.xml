@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.zhy.base:fileprovider:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fileprovider-1.0.0.aar/9bdcbacbbd47ea345822b011af85bbbe/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fileprovider-1.0.0.aar/9bdcbacbbd47ea345822b011af85bbbe/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.zhy.base/fileprovider/1.0.0/64b8c2dfe3a6b08fa3b9aaefaed76d47aad130ed/fileprovider-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

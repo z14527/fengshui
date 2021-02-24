@@ -45,21 +45,41 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.function.Consumer;
 import android.telephony.TelephonyManager;
 import static android.content.Context.TELEPHONY_SERVICE;
 
-import com.tbruyelle.rxpermissions2.Permission;
+//import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import io.reactivex.Observable;
-
-import io.reactivex.functions.Action;
+//import io.reactivex.Observable;
+//
+//import io.reactivex.functions.Action;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.rosuda.REngine.REXPMismatchException;
+import org.rosuda.REngine.REngineException;
+import org.rosuda.REngine.Rserve.RConnection;
+import org.rosuda.REngine.Rserve.RserveException;
 
 import static android.widget.Toast.*;
 
@@ -68,6 +88,8 @@ public class MainActivity extends AppCompatActivity  {
     public static String listdb_url = "";
     public static String data_url = "";
     public static String pf_url = "";
+    public static String r_ip = "127.0.0.1";
+    public static String r_port = "9091";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +111,8 @@ public class MainActivity extends AppCompatActivity  {
                 Manifest.permission.ACCESS_WIFI_STATE
         };
         RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.requestEach(permissionsGroup)
+        rxPermissions
+                .requestEach(permissionsGroup)
                 .subscribe(permission -> {
                     if(!permission.granted)
                         Toast.makeText(this,"权限名称:"+permission.name+",申请结果:"+permission.granted, LENGTH_LONG).show();
@@ -108,6 +131,26 @@ public class MainActivity extends AppCompatActivity  {
         btlsbd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+//                Toast.makeText(getApplicationContext(),
+//                        "ip="+r_ip+"\nport="+Integer.parseInt(r_port),
+//                        Toast.LENGTH_LONG).show();
+//                String req1 = "shan=";
+//                String req2 = "shui=";
+//                int[] fsv1 = new int[24];
+//                int[] fsv2 = new int[24];
+//                Random rand = new Random();
+//                for(int i=0; i<24; i++) {
+//                    fsv1[i] = rand.nextInt(100) + 1;
+//                    req1 = req1 + fsv1[i] + ",";
+//                    fsv2[i] = rand.nextInt(100) + 1;
+//                    req2 = req2 + fsv2[i] + ",";
+//                }
+//                String req = "http://"+r_ip+":"+r_port+"/?"+
+//                        req1+"&"+req2;
+//                send(req);
+//                //GetFSR(req);
+//                if(req.length()>10)
+//                    return;
                 makeText(MainActivity.this,getString(R.string.main_activity_button3_name), LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this,LishiActivity.class);
                 startActivity(intent);
@@ -154,6 +197,8 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.local_setting) {
+            r_ip = "127.0.0.1";
+            r_port = "8080";
             up_url = getString(R.string.local_up_url);
             listdb_url = getString(R.string.local_listdb_url);
             data_url = getString(R.string.local_data_url);
@@ -163,6 +208,8 @@ public class MainActivity extends AppCompatActivity  {
             setTitle("风水大师（本地）");
         }
         if (id == R.id.test_setting) {
+            r_ip = "192.168.1.12";
+            r_port = "80";
             up_url = getString(R.string.test_up_url);
             listdb_url = getString(R.string.test_listdb_url);
             data_url = getString(R.string.test_data_url);
@@ -181,6 +228,10 @@ public class MainActivity extends AppCompatActivity  {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     String ip = edit.getText().toString();
+                    String[] rpp = ip.split(":");
+                    r_ip = rpp[0];
+                    if(rpp.length>1)
+                        r_port = rpp[1];
                     up_url = "http://" + ip + "/up.php";
                     listdb_url = "http://" + ip + "/listdb.php";
                     data_url = "http://" + ip + "/data/";

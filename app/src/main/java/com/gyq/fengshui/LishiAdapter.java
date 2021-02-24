@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.TypedValue;
@@ -117,76 +120,7 @@ public class LishiAdapter extends BaseAdapter {
         return arg0;
     }
 
-    private void sendRequestWithHttpURLConnection(String surl){
-        //开启线程来发起网络请求
-        String s="";
-        Toast.makeText(context,surl,Toast.LENGTH_SHORT).show();
-        if(false) {
-            HttpGet hg = new HttpGet(surl);
-            HttpClient hc = new DefaultHttpClient();
-            try {
-                HttpResponse hr = hc.execute(hg);
-                if (hr.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                    s = EntityUtils.toString(hr.getEntity());
-                    Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
-                }
-            } catch (ClientProtocolException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    }
-    private void showResponseResult(HttpResponse response)
-    {
-        if (null == response)
-        {
-            return;
-        }
-
-        HttpEntity httpEntity = response.getEntity();
-        try
-        {
-            InputStream inputStream = httpEntity.getContent();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    inputStream));
-            String result = "";
-            String line = "";
-            while (null != (line = reader.readLine()))
-            {
-                result += line;
-
-            }
-            Toast.makeText(context,result,Toast.LENGTH_SHORT).show();
-            if(false) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("宝地评分具体情况");    //设置对话框标题
-                builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
-                final TextView tv = new TextView(context);
-                builder.setView(tv);
-                tv.setText(name + result);
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-                tv.setVerticalScrollBarEnabled(true);
-                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
-                AlertDialog dialog = builder.create();  //创建对话框
-                dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
-                dialog.show();
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-    //这里arg0被定义为final是java语法规范（Cannot refer to a non-final variable arg0 inside an inner class defined in a different method）
+      //这里arg0被定义为final是java语法规范（Cannot refer to a non-final variable arg0 inside an inner class defined in a different method）
     @Override
     public View getView(final int arg0, View arg1, ViewGroup arg2) {
         // TODO Auto-generated method stub
@@ -274,9 +208,6 @@ public class LishiAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 // TODO 评分
-                String phone = new Gongju().getNumber(activity);
-     //           if(phone!=null)
-      //              Toast.makeText(context,"phone number =" + phone ,Toast.LENGTH_SHORT).show();
                 String shan = "";
                 String shui = "";
                 Map<String, Object> map = listData.get(arg0);
@@ -304,51 +235,14 @@ public class LishiAdapter extends BaseAdapter {
                 }
                 shan = shan.substring(0,shan.length()-1);
                 shui = shui.substring(0,shui.length()-1);
-                char[] chars = (shan + shui).toCharArray();
-                int[] kn = new int[10];
-                for(int i = 0;i < 10;i++)
-                    kn[i] = 1;
-                for(int j = 0; j < chars.length; j++) {
-                    if ('0' == chars[j])
-                        kn[0] = kn[0] + 1;
-                    if ('1' == chars[j])
-                        kn[1] = kn[1] + 1;
-                    if ('2' == chars[j])
-                        kn[2] = kn[2] + 1;
-                    if ('3' == chars[j])
-                        kn[3] = kn[3] + 1;
-                    if ('4' == chars[j])
-                        kn[4] = kn[4] + 1;
-                    if ('5' == chars[j])
-                        kn[5] = kn[5] + 1;
-                    if ('6' == chars[j])
-                        kn[6] = kn[6] + 1;
-                    if ('7' == chars[j])
-                        kn[7] = kn[7] + 1;
-                    if ('8' == chars[j])
-                        kn[8] = kn[8] + 1;
-                    if ('9' == chars[j])
-                        kn[9] = kn[9] + 1;
-                }
-                for(int i = 0;i < 10;i++)
-                    kn[i] = min(kn[i],9);
-                String kns = "";
-                for(int i = 0;i < 10;i++)
-                    kns = kns + kn[i];
-                String plus1 = "" + (parseInt(phone.substring(0,6)) + parseInt(kns.substring(0,6)));
-                String plus2 = "" + (parseInt(phone.substring(6)) + parseInt(kns.substring(6)));
-                String result="";//访问返回结果
-        //        Toast.makeText(context,"http://z14527.gz01.bdysite.com/pf.php?shan="+shan+"&shui="+shui,Toast.LENGTH_SHORT).show();
-        //        Intent intent = new Intent(context,WebActivity.class);
-        //        String url = "http://z14527.gz01.bdysite.com/pf.php?shan=" + shan + "&shui=" + shui + "&plus1=" + plus1 + "&plus2=" + plus2;
-        //        intent.putExtra("url",url);
-        //        intent.putExtra("name",name);
-        //        getApplicationContext().startActivity(intent);
-//                Uri uri = Uri.parse(getApplicationContext().getString(R.string.pf_url)+"?shan=" + shan + "&shui=" + shui + "&plus1=" + plus1 + "&plus2=" + plus2);
-                Uri uri = Uri.parse(MainActivity.pf_url+"?shan=" + shan + "&shui=" + shui + "&plus1=" + plus1 + "&plus2=" + plus2);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                Intent intent = new Intent(context,
+                        PfActivity.class);
+                intent.putExtra("shan",shan);
+                intent.putExtra("shui",shui);
+                intent.putExtra("name",name);
                 getApplicationContext().startActivity(intent);
-            }});
+            }
+        });
         holder.imageViewLp.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -364,7 +258,8 @@ public class LishiAdapter extends BaseAdapter {
                 Intent intent = new Intent(context,FsChartActivity.class);
                 initMap(dbid);
                 v.getContext().startActivity(intent);
-            }});
+            }
+        });
         holder.imageViewCross.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -377,7 +272,8 @@ public class LishiAdapter extends BaseAdapter {
                 name = map.get("name").toString();
                 intent.putExtra("name",name);
                 v.getContext().startActivity(intent);
-            }});
+            }
+        });
         holder.imageViewDiejia.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -398,7 +294,8 @@ public class LishiAdapter extends BaseAdapter {
                 intent.putExtra("path",filePath+filename);
                 intent.putExtra("name",name);
                 v.getContext().startActivity(intent);
-            }});
+            }
+        });
        return arg1;
     }
     private String getDbValue(String dbid)
@@ -503,9 +400,6 @@ public class LishiAdapter extends BaseAdapter {
         public TextView textView3 ;
     }
 
-    public ArrayList<Map<String,Object>> getListData(){
-        return this.listData;
-    }
 
 }
 
