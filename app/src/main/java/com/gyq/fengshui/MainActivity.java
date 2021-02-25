@@ -63,11 +63,8 @@ import java.util.function.Consumer;
 import android.telephony.TelephonyManager;
 import static android.content.Context.TELEPHONY_SERVICE;
 
-//import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-//import io.reactivex.Observable;
-//
-//import io.reactivex.functions.Action;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -131,26 +128,6 @@ public class MainActivity extends AppCompatActivity  {
         btlsbd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                Toast.makeText(getApplicationContext(),
-//                        "ip="+r_ip+"\nport="+Integer.parseInt(r_port),
-//                        Toast.LENGTH_LONG).show();
-//                String req1 = "shan=";
-//                String req2 = "shui=";
-//                int[] fsv1 = new int[24];
-//                int[] fsv2 = new int[24];
-//                Random rand = new Random();
-//                for(int i=0; i<24; i++) {
-//                    fsv1[i] = rand.nextInt(100) + 1;
-//                    req1 = req1 + fsv1[i] + ",";
-//                    fsv2[i] = rand.nextInt(100) + 1;
-//                    req2 = req2 + fsv2[i] + ",";
-//                }
-//                String req = "http://"+r_ip+":"+r_port+"/?"+
-//                        req1+"&"+req2;
-//                send(req);
-//                //GetFSR(req);
-//                if(req.length()>10)
-//                    return;
                 makeText(MainActivity.this,getString(R.string.main_activity_button3_name), LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this,LishiActivity.class);
                 startActivity(intent);
@@ -197,8 +174,6 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.local_setting) {
-            r_ip = "127.0.0.1";
-            r_port = "8080";
             up_url = getString(R.string.local_up_url);
             listdb_url = getString(R.string.local_listdb_url);
             data_url = getString(R.string.local_data_url);
@@ -208,8 +183,6 @@ public class MainActivity extends AppCompatActivity  {
             setTitle("风水大师（本地）");
         }
         if (id == R.id.test_setting) {
-            r_ip = "192.168.1.12";
-            r_port = "80";
             up_url = getString(R.string.test_up_url);
             listdb_url = getString(R.string.test_listdb_url);
             data_url = getString(R.string.test_data_url);
