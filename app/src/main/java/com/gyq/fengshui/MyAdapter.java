@@ -66,7 +66,7 @@ public class MyAdapter extends BaseAdapter {
         ViewHolder holder = null ;
         holder = new ViewHolder() ;
 
-        arg1 = mInflater.inflate(R.layout.list_view_temp, null);
+        arg1 = mInflater.inflate(R.layout.input_layout_temp, null);
         //需要为每个控件指定内容，如指定textView的显示文字（这就是引用的listData作用）
         holder.textView1 = (TextView)arg1.findViewById(R.id.text_view) ;
         holder.textView1.setText(listData.get(arg0).get("text").toString()) ;

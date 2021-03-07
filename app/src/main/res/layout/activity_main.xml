@@ -34,26 +34,39 @@
             android:divider="#00000000"
             android:dividerHeight="0dip">
             <ImageButton
-                android:id="@+id/imgBtnDL"
+                android:id="@+id/imgBtnLPC"
                 android:layout_width="match_parent"
                 android:layout_marginTop="85pt"
-                android:layout_height="50pt"
+                android:layout_height="40pt"
                 android:layout_weight="1"
-                android:background="@drawable/denglu" />
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/luopance" />
             <ImageButton
                 android:id="@+id/imgBtnXBD"
                 android:layout_width="match_parent"
                 android:layout_marginTop="85pt"
-                android:layout_height="50pt"
+                android:layout_height="40pt"
                 android:layout_weight="1"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/xinbaodi" />
+
             <ImageButton
                 android:id="@+id/imgBtnLSBD"
                 android:layout_width="match_parent"
                 android:layout_marginTop="85pt"
-                android:layout_height="50pt"
+                android:layout_height="40pt"
                 android:layout_weight="1"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/lishibaodi" />
+            <ImageButton
+                android:id="@+id/imgBtnNFYC"
+                android:layout_width="match_parent"
+                android:layout_marginTop="85pt"
+                android:layout_height="40pt"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/nianfenyuce" />
         </TableRow>
     </TableLayout>
     </android.support.constraint.ConstraintLayout>

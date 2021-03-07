@@ -257,6 +257,7 @@ public class LishiActivity extends AppCompatActivity {
 
     private void upLoadDBfile() {
         final String phone = new Gongju().getNumber(this);
+  //      final String phone = "13683559392";
         final String dbs = getApplicationContext().getDatabasePath("fengshui.db").getAbsolutePath();
         //用HttpClient发送请求，分为五步
 //第一步：创建HttpClient对象
@@ -327,7 +328,6 @@ public class LishiActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     public void dwonloadDBfile() {
         //用HttpClient发送请求，分为五步

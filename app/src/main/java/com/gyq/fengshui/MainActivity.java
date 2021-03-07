@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
    //     btlsbd.setVisibility(View.INVISIBLE);
-        ImageButton btdl = (ImageButton) findViewById(R.id.imgBtnDL);
-        btdl.setOnClickListener(new View.OnClickListener() {
+        ImageButton btlpc = (ImageButton) findViewById(R.id.imgBtnLPC);
+        btlpc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AddLpViewActivity.class);
@@ -150,6 +150,16 @@ public class MainActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
+        final ImageButton btlnfyc = (ImageButton) findViewById(R.id.imgBtnNFYC);
+        btlnfyc.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+           //     makeText(MainActivity.this,getString(R.string.main_activity_button3_name), LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,FsSelectActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if(notHasLightSensorManager()) {
             btxbd.setEnabled(false);
             btlsbd.setEnabled(false);
@@ -229,22 +239,23 @@ public class MainActivity extends AppCompatActivity  {
 }
 class Gongju {
     public String getNumber(Activity at) {
-        TelephonyManager tm = (TelephonyManager) at.getSystemService(TELEPHONY_SERVICE);
-        String phoneNumber1 = "";
-        try {
-            phoneNumber1 = tm.getLine1Number();
-        }catch(SecurityException e1){
-            e1.printStackTrace();
-        }
-     //   Toast.makeText(at.getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
-        if (phoneNumber1.equals("")) {
-            try {
-                phoneNumber1 = tm.getImei();
-            }catch(SecurityException e1){
-                e1.printStackTrace();
-            }
-        }
-        return phoneNumber1;
+        return "13683559392";
+//        TelephonyManager tm = (TelephonyManager) at.getSystemService(TELEPHONY_SERVICE);
+//        String phoneNumber1 = "";
+//        try {
+//            phoneNumber1 = tm.getLine1Number();
+//        }catch(SecurityException e1){
+//            e1.printStackTrace();
+//        }
+//     //   Toast.makeText(at.getApplicationContext(), "手机号码:" + phoneNumber1, Toast.LENGTH_SHORT).show();
+//        if (phoneNumber1.equals("")) {
+//            try {
+//                phoneNumber1 = tm.getImei();
+//            }catch(SecurityException e1){
+//                e1.printStackTrace();
+//            }
+//        }
+//        return phoneNumber1;
     }
     public void ShowMsg(Context context,String title, String msg,boolean cancel,int type){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -269,6 +280,8 @@ class Gongju {
                     FsChartActivity.reDraw();
                 if(type==2)
                     FsChartActivity.saveData();
+                if(type==3)
+                    FsSelectActivity.ycChoice();
             }
         });
         if(cancel)
