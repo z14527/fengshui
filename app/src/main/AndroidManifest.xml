@@ -36,6 +36,7 @@
         <activity android:name=".LishiActivity" />
         <activity android:name=".AddLpViewActivity" />
         <activity android:name=".DiejiaViewActivity" />
+        <activity android:name=".FsYucheActivity" />
     </application>
 
 </manifest>

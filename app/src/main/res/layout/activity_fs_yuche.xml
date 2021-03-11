@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/LinearLayout05"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_yt1"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="60dip"
+            android:layout_height="50dp"
+            android:text="公历"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_yt2"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="60dip"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="农历"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_yt3"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="60dip"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="分数1"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_yt4"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="60dip"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="分数2"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_yt5"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="60dip"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="分数3"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp" />
+     </LinearLayout>
+    <ListView
+        android:id="@+id/FsYucheListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    </ListView>
+ </LinearLayout>
+

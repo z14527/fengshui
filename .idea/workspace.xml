@@ -9,10 +9,10 @@
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" line="194" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5732926a-463c-4c4a-aaf0-17c1b33c73a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml" afterDir="false" />
+    <list default="true" id="5732926a-463c-4c4a-aaf0-17c1b33c73a9" name="Default Changelist" comment="修改了预测宝地的选择">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_yuche.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fs_yuche_layout_temp.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -24,12 +24,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MyAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MyAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/denglu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_view_temp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/input_layout_temp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +45,17 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="fengshui" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -57,46 +64,104 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="89" column="47" lean-forward="true" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
+            <state relative-caret-position="154">
+              <caret line="55" column="11" lean-forward="true" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="11" />
               <folding>
-                <element signature="e#2075#2096#0" expanded="true" />
+                <element signature="class#1489:1690" />
+                <element signature="method#getData#0;class#FsSelectActivity#0" />
+                <element signature="method#UnCheckAll#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
+                <element signature="method#getCount#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
+                <element signature="class#5688:6004" />
+                <element signature="method#onClick#0;class#6309:9850" />
+                <element signature="method#onClick#0;class#8868:9623" />
+                <element signature="method#onClick#0;class#10155:12214" />
+                <element signature="class#12367:12791" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lishi_activity.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+            <state relative-caret-position="1086">
+              <caret line="61" column="20" lean-forward="true" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2719#2720#0" expanded="true" />
+                <element signature="e#2777#2778#0" expanded="true" />
+                <element signature="e#2842#2843#0" expanded="true" />
+                <element signature="e#2881#2882#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/Input_Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+            <state relative-caret-position="180">
+              <caret line="26" column="31" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/input_layout_temp.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="840">
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/xbd_layout.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="e#200#337#0" />
+                <element signature="e#342#562#0" />
+                <element signature="e#567#1840#0" />
+              </folding>
+            </state>
+          </provider>
           <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fs_yuche_layout_temp.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fs_yuche.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+              <folding>
+                <element signature="e#2561#2752#0" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-832">
-              <caret line="331" selection-start-line="331" selection-end-line="331" />
+            <state relative-caret-position="36">
+              <caret line="221" column="43" selection-start-line="221" selection-start-column="43" selection-end-line="221" selection-end-column="43" />
               <folding>
                 <element signature="class#4556:6186" />
                 <element signature="class#6300:7931" />
@@ -114,12 +179,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="283" column="48" selection-start-line="283" selection-start-column="48" selection-end-line="283" selection-end-column="48" />
+            <state relative-caret-position="-1061">
+              <caret line="263" column="50" selection-start-line="263" selection-start-column="50" selection-end-line="263" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#12092#12093#0" expanded="true" />
-                <element signature="e#12148#12149#0" expanded="true" />
+                <element signature="method#getNumber#0;class#Gongju#0" />
               </folding>
             </state>
           </provider>
@@ -127,32 +191,12 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="69" column="59" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
+            </state>
+          </provider>
           <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-              <folding>
-                <element signature="e#474#1586#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="113" column="39" selection-start-line="113" selection-start-column="15" selection-end-line="113" selection-end-column="39" />
-              <folding>
-                <element signature="e#3328#3329#0" expanded="true" />
-                <element signature="e#3367#3368#0" expanded="true" />
-                <element signature="method#getDbValue#0;class#LishiAdapter#0" />
-                <element signature="method#checkid#0;class#LishiAdapter#0" />
-                <element signature="method#initMap#0;class#LishiAdapter#0" />
-                <element signature="method#getApplicationContext#0;class#LishiAdapter#0" />
-              </folding>
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -166,36 +210,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mani</find>
-      <find>DatabaseHelper</find>
-      <find>mydb</find>
-      <find>ca'l</find>
-      <find>ca</find>
-      <find>c</find>
-      <find>calend</find>
-      <find>calenda</find>
-      <find>calendar</find>
-      <find>handler</find>
-      <find>DrawingView</find>
-      <find>pf_url</find>
-      <find>&lt;string name=&quot;up_url&quot;&gt;http://z14527.gz01.bdysite.com/up.php&lt;/string&gt;</find>
-      <find>up_url</find>
-      <find>/listdb.php</find>
-      <find>listdb_url</find>
-      <find>random</find>
-      <find>Cannot connect</find>
-      <find>http</find>
-      <find>GetFSR</find>
-      <find>showResponseResult</find>
-      <find>checkid</find>
-      <find>getData</find>
-      <find>listData</find>
-      <find>r_ip</find>
-      <find>ShowMsg</find>
-      <find>new DatabaseHelper</find>
-      <find>new MyAdapter</find>
-      <find>image_view1</find>
-      <find>MyAdapter</find>
+      <find>MyAdapter2</find>
+      <find>tv_t1</find>
+      <find>tv_fs_n</find>
+      <find>tv_fs_fs</find>
+      <find>tv_yt1</find>
+      <find>gongli</find>
+      <find>nongli</find>
+      <find>fs1</find>
+      <find>fs2</find>
+      <find>fs_yuche_layout_temp</find>
+      <find>tv_fs_gl</find>
+      <find>tv_fs_nl</find>
+      <find>tv_fs_fs1</find>
+      <find>tv_fs_fs2</find>
+      <find>tv_fs_fs3</find>
+      <find>adapter</find>
+      <find>mListView</find>
+      <find>Intent intent = new Intent</find>
+      <find>tv_select_yuche</find>
+      <find>adapter=new</find>
+      <find>FsYucheListView</find>
+      <find>startActivity</find>
+      <find>LinearLayout05</find>
+      <find>fruit_name</find>
+      <find>setContentView</find>
+      <find>FsYucheActivity</find>
+      <find>Input_Activity</find>
+      <find>fs3</find>
+      <find>checkOk</find>
+      <find>ycChoice</find>
     </findStrings>
     <replaceStrings>
       <replace>45</replace>
@@ -204,6 +248,10 @@
       <replace>60</replace>
       <replace>192.168.1.12</replace>
       <replace>test</replace>
+      <replace>]</replace>
+      <replace>fs2</replace>
+      <replace>fs3</replace>
+      <replace>MyAdapter3</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -243,10 +291,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_yuce_set.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/YuceSetActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fs_yuche_layout_temp.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_yuche.xml" />
       </list>
     </option>
   </component>
@@ -261,7 +313,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -442,8 +496,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -823,14 +875,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614259598485</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="修改了预测宝地的选择">
+      <created>1615132426380</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1615132426380</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27184466" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
       <window_info id="Structure" order="1" weight="0.21359223" />
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -841,7 +900,7 @@
       <window_info id="Designer" order="8" />
       <window_info id="Resources Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4911003" weight="0.32871974" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49029127" weight="0.32871974" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -849,54 +908,69 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="8" />
-      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.48058254" weight="0.32871974" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4975728" weight="0.32949308" />
+      <window_info active="true" anchor="bottom" id="Messages" order="9" sideWeight="0.47977346" visible="true" weight="0.32871974" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49676377" weight="0.32871974" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Gradle Console" order="12" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="13" sideWeight="0.512945" side_tool="true" visible="true" weight="0.32871974" />
-      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.487055" visible="true" weight="0.32871974" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5133262" side_tool="true" visible="true" weight="0.19934994" />
+      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.48667377" visible="true" weight="0.19934994" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="AdbCommander" order="3" side_tool="true" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Gradle" order="6" />
+      <window_info anchor="right" id="Gradle" order="6" weight="0.32928804" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Device File Explorer" order="8" side_tool="true" />
       <window_info anchor="right" id="Preview" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27184466" />
+      <window_info id="Structure" order="1" weight="0.21359223" />
+      <window_info id="Build Variants" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Captures" order="4" side_tool="true" weight="0.32928804" />
+      <window_info id="设计器" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info id="Designer" order="8" />
+      <window_info id="Resources Explorer" order="9" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49029127" visible="true" weight="0.32871974" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Logcat" order="8" />
+      <window_info active="true" anchor="bottom" id="Messages" order="9" sideWeight="0.47977346" visible="true" weight="0.32871974" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49676377" weight="0.32871974" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Gradle Console" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50970876" side_tool="true" visible="true" weight="0.32871974" />
+      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.48462784" weight="0.32871974" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="AdbCommander" order="3" side_tool="true" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Gradle" order="6" weight="0.32928804" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info anchor="right" id="Device File Explorer" order="8" side_tool="true" />
+      <window_info anchor="right" id="Preview" order="9" />
+    </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="增加了Permission管理" />
     <MESSAGE value="修改了评分的读取显示方式" />
     <MESSAGE value="修改了默认服务器地址" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了默认服务器地址" />
+    <MESSAGE value="修改了预测宝地的选择" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了预测宝地的选择" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/Android/Sdk/sources/android-27/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="24959" column="13" selection-start-line="24959" selection-start-column="13" selection-end-line="24959" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/Input_Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9612">
-          <caret line="289" column="16" selection-start-line="289" selection-start-column="12" selection-end-line="289" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/ImagesAddActivity.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_images_add.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PinchImageView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28440">
-          <caret line="809" selection-start-line="809" selection-end-line="809" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/lp.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -908,20 +982,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/lp.jpg" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_lp_view.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_diejia_view.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/appcompat-v7/27.1.1/21d073509c5f8d25a1bf274067fa729a1fba8d75/appcompat-v7-27.1.1-sources.jar!/android/support/v7/app/AppCompatActivity.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/AddLpViewActivity.java">
@@ -961,12 +1035,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1016,21 +1090,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fschart.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3564">
           <caret line="99" column="46" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1059,20 +1125,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pf_layout_temp.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1152">
           <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_pf.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/DiejiaViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1088,14 +1154,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
-          <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsChartActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10908">
@@ -1106,12 +1164,12 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_view_temp.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/listview_item.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lishi_layout_temp.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
           <caret line="18" column="40" selection-start-line="17" selection-start-column="12" selection-end-line="18" selection-end-column="40" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MyAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1120,30 +1178,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_yuce_set.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_yuce_set.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/YuceSetActivity.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="6" column="40" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="40" />
+        <state relative-caret-position="288">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lishi_activity.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding>
+            <element signature="e#297#586#0" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/input_layout_temp.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="113" column="39" selection-start-line="113" selection-start-column="15" selection-end-line="113" selection-end-column="39" />
+        <state relative-caret-position="2844">
+          <caret line="157" column="58" selection-start-line="157" selection-start-column="51" selection-end-line="157" selection-end-column="58" />
           <folding>
             <element signature="e#3328#3329#0" expanded="true" />
             <element signature="e#3367#3368#0" expanded="true" />
@@ -1155,18 +1226,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+        <state relative-caret-position="160">
+          <caret line="69" column="59" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1061">
+          <caret line="263" column="50" selection-start-line="263" selection-start-column="50" selection-end-line="263" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getNumber#0;class#Gongju#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-832">
-          <caret line="331" selection-start-line="331" selection-end-line="331" />
+        <state relative-caret-position="36">
+          <caret line="221" column="43" selection-start-line="221" selection-start-column="43" selection-end-line="221" selection-end-column="43" />
           <folding>
             <element signature="class#4556:6186" />
             <element signature="class#6300:7931" />
@@ -1180,42 +1262,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/YuceSetActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/xbd_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="109" column="60" selection-start-line="109" selection-start-column="60" selection-end-line="109" selection-end-column="60" />
+        <state relative-caret-position="252">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="e#200#337#0" />
+            <element signature="e#342#562#0" />
+            <element signature="e#567#1840#0" />
+          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml">
       <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/Input_Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        <state relative-caret-position="180">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="31" />
           <folding>
-            <element signature="e#474#1586#0" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="283" column="48" selection-start-line="283" selection-start-column="48" selection-end-line="283" selection-end-column="48" />
+        <state relative-caret-position="840">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fs_yuche_layout_temp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fs_yuche.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="54" column="44" lean-forward="true" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+          <folding>
+            <element signature="e#2561#2752#0" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1086">
+          <caret line="61" column="20" lean-forward="true" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12092#12093#0" expanded="true" />
-            <element signature="e#12148#12149#0" expanded="true" />
+            <element signature="e#2719#2720#0" expanded="true" />
+            <element signature="e#2777#2778#0" expanded="true" />
+            <element signature="e#2842#2843#0" expanded="true" />
+            <element signature="e#2881#2882#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="89" column="47" lean-forward="true" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
+        <state relative-caret-position="154">
+          <caret line="55" column="11" lean-forward="true" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="11" />
           <folding>
-            <element signature="e#2075#2096#0" expanded="true" />
+            <element signature="class#1489:1690" />
+            <element signature="method#getData#0;class#FsSelectActivity#0" />
+            <element signature="method#UnCheckAll#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
+            <element signature="method#getCount#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
+            <element signature="class#5688:6004" />
+            <element signature="method#onClick#0;class#6309:9850" />
+            <element signature="method#onClick#0;class#8868:9623" />
+            <element signature="method#onClick#0;class#10155:12214" />
+            <element signature="class#12367:12791" />
           </folding>
         </state>
       </provider>
