@@ -3,8 +3,10 @@ package com.gyq.fengshui;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -45,6 +47,8 @@ public class FsYucheActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fs_yuche);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         String names = getIntent().getStringExtra("names");
         if(names!="")
             bdnames = names.split(",");
@@ -95,6 +99,7 @@ public class FsYucheActivity extends AppCompatActivity {
         HttpURLConnection connection = null;
         BufferedReader reader = null;
         String info = "";
+
         try {
             //url
             URL url = new URL(req);

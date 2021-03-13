@@ -149,6 +149,7 @@ public class PfActivity extends AppCompatActivity {
     }
 
     private void setData() {
+
         HttpURLConnection connection = null;
         BufferedReader reader = null;
         try {

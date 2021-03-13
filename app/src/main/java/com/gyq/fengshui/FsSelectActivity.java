@@ -3,7 +3,9 @@ package com.gyq.fengshui;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +37,8 @@ public class FsSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fs_select);
         setTitle("选择要评价的宝地（可以多选）：");
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         listData = getData();
         mListView = (ListView) findViewById(R.id.FsSelectListView);
         adapter=new MyAdapter2(listData,this);
@@ -60,15 +64,22 @@ public class FsSelectActivity extends AppCompatActivity {
         tvYuche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent();
+                        PackageManager packageManager = getPackageManager();
+                        intent = packageManager.getLaunchIntentForPackage("com.termux");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP) ;
+                        startActivity(intent);
+                    }
+                }).start();
                 Intent intent = new Intent(FsSelectActivity.this,FsYucheActivity.class);
                 adapter.getChoice();
                 intent.putExtra("names",adapter.bdnames);
                 intent.putExtra("ids",adapter.bdids);
                 intent.putExtra("cxs",adapter.cxs);
                 intent.putExtra("sjs",adapter.sjs);
-//                new Gongju().ShowMsg(context,"",
-//                        adapter.bdnames+"\n"+adapter.bdids+"\n"+
-//                                adapter.cxs+"\n"+adapter.sjs,false,-1);
                 startActivity(intent);
             }
         });

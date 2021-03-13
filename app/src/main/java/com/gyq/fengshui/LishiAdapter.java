@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -235,8 +236,17 @@ public class LishiAdapter extends BaseAdapter {
                 }
                 shan = shan.substring(0,shan.length()-1);
                 shui = shui.substring(0,shui.length()-1);
-                Intent intent = new Intent(context,
-                        PfActivity.class);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent();
+                        PackageManager packageManager = v.getContext().getPackageManager();
+                        intent = packageManager.getLaunchIntentForPackage("com.termux");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP) ;
+                        v.getContext().startActivity(intent);
+                    }
+                }).start();
+                Intent intent = new Intent(context,PfActivity.class);
                 intent.putExtra("shan",shan);
                 intent.putExtra("shui",shui);
                 intent.putExtra("name",name);

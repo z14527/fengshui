@@ -47,6 +47,7 @@ import android.widget.Toast;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -302,7 +303,10 @@ class Gongju {
     public void Log(String filename,String info){
         try {
             String strFilePath = Environment.getExternalStorageDirectory().getPath() + "/" + filename;
+            File f1 = new File(strFilePath);
             FileOutputStream fos = new FileOutputStream(strFilePath,true);
+            if(f1.length()>1000*100)
+                fos = new FileOutputStream(strFilePath);
             byte []szBuf = info.getBytes();
             fos.write(szBuf);
             fos.close();
