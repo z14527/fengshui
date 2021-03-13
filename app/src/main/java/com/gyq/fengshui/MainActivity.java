@@ -16,6 +16,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
@@ -46,6 +47,7 @@ import android.widget.Toast;
 
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("风水大师（远程）");
+       // new Gongju().LogClear("fs.txt");
         up_url = getString(R.string.up_url);
         listdb_url = getString(R.string.listdb_url);
         data_url = getString(R.string.data_url);
@@ -295,6 +298,24 @@ class Gongju {
         AlertDialog dialog = builder.create();  //创建对话框
         dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
         dialog.show();
+    }
+    public void Log(String filename,String info){
+        try {
+            String strFilePath = Environment.getExternalStorageDirectory().getPath() + "/" + filename;
+            FileOutputStream fos = new FileOutputStream(strFilePath,true);
+            byte []szBuf = info.getBytes();
+            fos.write(szBuf);
+            fos.close();
+        } catch (Exception e) {
+        }
+    }
+    public void LogClear(String filename){
+        try {
+            String strFilePath = Environment.getExternalStorageDirectory().getPath() + "/" + filename;
+            FileOutputStream fos = new FileOutputStream(strFilePath);
+            fos.close();
+        } catch (Exception e) {
+        }
     }
 }
 class RealPathFromUriUtils {

@@ -29,6 +29,7 @@ public class FsSelectActivity extends AppCompatActivity {
     private DatabaseHelper mydb = null;
     private TextView tvUnSelectAll = null,
             tvSelectOk = null,tvYuche = null;
+    private Context context = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class FsSelectActivity extends AppCompatActivity {
         listData = getData();
         mListView = (ListView) findViewById(R.id.FsSelectListView);
         adapter=new MyAdapter2(listData,this);
+        context = this;
         mListView.setAdapter(adapter);
         tvUnSelectAll = (TextView)findViewById(R.id.tv_unselect_all);
         tvUnSelectAll.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +61,14 @@ public class FsSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(FsSelectActivity.this,FsYucheActivity.class);
+                adapter.getChoice();
+                intent.putExtra("names",adapter.bdnames);
+                intent.putExtra("ids",adapter.bdids);
+                intent.putExtra("cxs",adapter.cxs);
+                intent.putExtra("sjs",adapter.sjs);
+//                new Gongju().ShowMsg(context,"",
+//                        adapter.bdnames+"\n"+adapter.bdids+"\n"+
+//                                adapter.cxs+"\n"+adapter.sjs,false,-1);
                 startActivity(intent);
             }
         });
@@ -91,6 +101,10 @@ public class FsSelectActivity extends AppCompatActivity {
     public class MyAdapter2 extends BaseAdapter {
         private ArrayList<Map<String,Object>> listData,listData2 ;
         private Context context;
+        public String bdnames = "";
+        public String bdids = "";
+        public String cxs = "";
+        public String sjs = "";
         private Map<Integer,Boolean> map=new HashMap<>();
         public MyAdapter2(ArrayList<Map<String,Object>> listData,Context context){
             this.listData=listData;
@@ -113,15 +127,29 @@ public class FsSelectActivity extends AppCompatActivity {
             }
             new Gongju().ShowMsg(context,"",info,
                     true,3);
-         }
+        }
+        public void getChoice(){
+            bdnames = "";
+            bdids = "";
+            cxs = "";
+            sjs = "";
+            for (int i = 0; i < listData.size(); i++) {
+                map.put(i,true);
+                bdnames += listData.get(i).get("name").toString()+",";
+                bdids += listData.get(i).get("id").toString()+",";
+                cxs += listData.get(i).get("cx").toString()+",";
+                sjs += listData.get(i).get("sj").toString()+",";
+            }
+            bdnames = bdnames.replaceAll(",$","");
+            bdids = bdids.replaceAll(",$","");
+            cxs = cxs.replaceAll(",$","");
+            sjs = sjs.replaceAll(",$","");
+        }
         public void ycChoice(){
             for (int i = listData.size() - 1; i > -1; i--) {
                 if (!map.containsKey(i)) {
                     listData.remove(i);
                 }
-            }
-            for (int i = 0; i < listData.size(); i++) {
-                map.put(i,true);
             }
             notifyDataSetChanged();
         }
