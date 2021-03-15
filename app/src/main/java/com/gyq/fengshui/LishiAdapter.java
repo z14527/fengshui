@@ -236,16 +236,21 @@ public class LishiAdapter extends BaseAdapter {
                 }
                 shan = shan.substring(0,shan.length()-1);
                 shui = shui.substring(0,shui.length()-1);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent();
-                        PackageManager packageManager = v.getContext().getPackageManager();
-                        intent = packageManager.getLaunchIntentForPackage("com.termux");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP) ;
-                        v.getContext().startActivity(intent);
+                try {
+                    SystemHelper.startLocalApp(getApplicationContext(),"com.termux");
+                    int i = 0;
+                    while(!SystemHelper.isHttpOpen(MainActivity.r_ip,Integer.parseInt(MainActivity.r_port))
+                            && i<20) {
+                        Thread.sleep(100);
+                        i++;
                     }
-                }).start();
+                    Thread.sleep(100);
+                    /**最后将被挤压到后台的本应用重新置顶到最前端
+                     * 当自己的应用在后台时，将它切换到前台来*/
+                    SystemHelper.setTopApp(getApplicationContext());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(context,PfActivity.class);
                 intent.putExtra("shan",shan);
                 intent.putExtra("shui",shui);

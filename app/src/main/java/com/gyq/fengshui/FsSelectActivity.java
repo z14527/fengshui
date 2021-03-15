@@ -56,7 +56,7 @@ public class FsSelectActivity extends AppCompatActivity {
         tvSelectOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                adapter.checkOk();
+                adapter.ycChoice();
            //     adapter.notifyDataSetChanged();
             }
         });
@@ -64,16 +64,21 @@ public class FsSelectActivity extends AppCompatActivity {
         tvYuche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent();
-                        PackageManager packageManager = getPackageManager();
-                        intent = packageManager.getLaunchIntentForPackage("com.termux");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_CLEAR_TOP) ;
-                        startActivity(intent);
+                try {
+                    SystemHelper.startLocalApp(getApplicationContext(),"com.termux");
+                    int i = 0;
+                    while(!SystemHelper.isHttpOpen(MainActivity.r_ip,Integer.parseInt(MainActivity.r_port))
+                            && i<20) {
+                        Thread.sleep(100);
+                        i++;
                     }
-                }).start();
+                    Thread.sleep(100);
+                    /**最后将被挤压到后台的本应用重新置顶到最前端
+                     * 当自己的应用在后台时，将它切换到前台来*/
+                    SystemHelper.setTopApp(getApplicationContext());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(FsSelectActivity.this,FsYucheActivity.class);
                 adapter.getChoice();
                 intent.putExtra("names",adapter.bdnames);
@@ -104,11 +109,7 @@ public class FsSelectActivity extends AppCompatActivity {
         Collections.reverse(list);
         return list;
     }
-    public static void ycChoice(){
-        if(adapter != null){
-            adapter.ycChoice();
-        }
-    }
+
     public class MyAdapter2 extends BaseAdapter {
         private ArrayList<Map<String,Object>> listData,listData2 ;
         private Context context;
@@ -130,15 +131,7 @@ public class FsSelectActivity extends AppCompatActivity {
             for(int i=0;i<listData2.size();i++)
                 listData.add(listData2.get(i));
         }
-        public void checkOk(){
-            String info = "你选择了：\n";
-            for(int i=0;i<listData.size();i++) {
-                if (map.containsKey(i))
-                    info += listData.get(i).get("name")+"\n";
-            }
-            new Gongju().ShowMsg(context,"",info,
-                    true,3);
-        }
+
         public void getChoice(){
             bdnames = "";
             bdids = "";

@@ -6,20 +6,24 @@
     </shared>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" line="198" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" line="206" mnemonic="5" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5732926a-463c-4c4a-aaf0-17c1b33c73a9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,11 +58,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="71" column="85" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="85" />
+            <state relative-caret-position="804">
+              <caret line="111" selection-start-line="111" selection-end-line="111" />
               <folding>
                 <element signature="method#UnCheckAll#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
                 <element signature="method#getCount#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
@@ -68,34 +72,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="50" column="43" selection-start-line="49" selection-start-column="7" selection-end-line="50" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/DataActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1260">
-              <caret line="28" column="53" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="245" column="38" selection-start-line="245" selection-start-column="38" selection-end-line="245" selection-end-column="38" />
+            <state relative-caret-position="74">
+              <caret line="239" column="82" selection-start-line="239" selection-start-column="72" selection-end-line="239" selection-end-column="82" />
               <folding>
-                <element signature="e#3328#3329#0" expanded="true" />
-                <element signature="e#3367#3368#0" expanded="true" />
                 <element signature="method#getDbValue#0;class#LishiAdapter#0" />
                 <element signature="method#checkid#0;class#LishiAdapter#0" />
                 <element signature="method#initMap#0;class#LishiAdapter#0" />
@@ -108,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
+            <state relative-caret-position="-720">
               <caret line="98" column="23" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="23" />
               <folding>
                 <element signature="e#5249#5376#1" />
@@ -120,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
+            <state relative-caret-position="290">
               <caret line="129" column="75" selection-start-line="129" selection-start-column="75" selection-end-line="129" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -153,34 +134,45 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="310" column="29" selection-start-line="310" selection-start-column="29" selection-end-line="310" selection-end-column="29" />
+            <state relative-caret-position="2">
+              <caret line="128" column="77" lean-forward="true" selection-start-line="128" selection-start-column="77" selection-end-line="128" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getNumber#0;class#Gongju#0" />
-                <element signature="method#ShowMsg#0;class#Gongju#0" />
+                <element signature="class#RealPathFromUriUtils#0" />
+                <element signature="method#appIsExist#0;class#SystemHelper#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/DatabaseHelper.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+            <state relative-caret-position="436">
+              <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1872">
+              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml">
+        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2484">
-              <caret line="69" column="59" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
+            <state relative-caret-position="216">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
     </leaf>
@@ -194,10 +186,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nongli</find>
-      <find>fs1</find>
-      <find>fs2</find>
-      <find>fs_yuche_layout_temp</find>
       <find>tv_fs_gl</find>
       <find>tv_fs_nl</find>
       <find>tv_fs_fs1</find>
@@ -216,14 +204,18 @@
       <find>FsYucheActivity</find>
       <find>Input_Activity</find>
       <find>fs3</find>
-      <find>checkOk</find>
       <find>getIntent</find>
       <find>ycChoice</find>
       <find>new Gongju().ShowMsg</find>
       <find>getPf</find>
       <find>com.termux&quot;</find>
-      <find>com.termux</find>
       <find>PfActivity</find>
+      <find>ACCESS_WIFI_STATE</find>
+      <find>startLocalApp</find>
+      <find>setTopApp</find>
+      <find>&quot;com.termux&quot;</find>
+      <find>com.termux</find>
+      <find>checkOk</find>
     </findStrings>
     <replaceStrings>
       <replace>45</replace>
@@ -275,14 +267,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fs_select_layout_temp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_select.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fs_yuche_layout_temp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_fs_yuche.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -296,6 +288,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -380,23 +375,6 @@
             <path>
               <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
               <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="gradle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -405,80 +383,10 @@
               <item name="gradle" type="462c0819:PsiDirectoryNode" />
               <item name="wrapper" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="REngine.jar" type="ab9368bb:PsiFileNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="REngine.jar" type="ab9368bb:PsiFileNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="REngine.jar" type="ab9368bb:PsiFileNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="REngine.jar" type="ab9368bb:PsiFileNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="rosuda" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="REngine.jar" type="ab9368bb:PsiFileNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="rosuda" type="462c0819:PsiDirectoryNode" />
-              <item name="REngine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Rserve.jar" type="ab9368bb:PsiFileNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Rserve.jar" type="ab9368bb:PsiFileNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Rserve.jar" type="ab9368bb:PsiFileNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="rosuda" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Rserve.jar" type="ab9368bb:PsiFileNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="rosuda" type="462c0819:PsiDirectoryNode" />
-              <item name="REngine" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fengshui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fengshui" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Rserve.jar" type="ab9368bb:PsiFileNode" />
-              <item name="org" type="462c0819:PsiDirectoryNode" />
-              <item name="rosuda" type="462c0819:PsiDirectoryNode" />
-              <item name="REngine" type="462c0819:PsiDirectoryNode" />
-              <item name="Rserve" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -879,14 +787,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615606720961</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="修改了第三方intent的打开方式">
+      <created>1615648086554</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615648086554</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
       <window_info id="Structure" order="1" weight="0.21359223" />
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -906,11 +821,11 @@
       <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Logcat" order="8" />
       <window_info active="true" anchor="bottom" id="Messages" order="9" sideWeight="0.47977346" visible="true" weight="0.32871974" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49573562" weight="0.32792208" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4946695" weight="0.32683983" />
       <window_info anchor="bottom" id="Terminal" order="11" />
       <window_info anchor="bottom" id="Gradle Console" order="12" side_tool="true" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.51492536" side_tool="true" visible="true" weight="0.19934994" />
-      <window_info active="true" anchor="bottom" id="Build" order="14" sideWeight="0.48507464" visible="true" weight="0.19934994" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5154584" side_tool="true" visible="true" weight="0.19934994" />
+      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.48454157" visible="true" weight="0.19934994" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -967,12 +882,10 @@
     <MESSAGE value="修改了预测宝地的选择" />
     <MESSAGE value="增加了预测宝地的Activity" />
     <MESSAGE value="修改了预测宝地的Activity" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了预测宝地的Activity" />
+    <MESSAGE value="修改了第三方intent的打开方式" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了第三方intent的打开方式" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/fqd.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/fdj.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1040,13 +953,6 @@
     </entry>
     <entry file="jar://$PROJECT_DIR$/REngine.jar!/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://D:/Android/Sdk/sources/android-27/java/net/Socket.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1150,14 +1056,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_yuce_set.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/YuceSetActivity.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/lishi_activity.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1191,14 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/xbd_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1231,6 +1121,23 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="50" column="43" selection-start-line="49" selection-start-column="7" selection-end-line="50" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/DataActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="28" column="53" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/DatabaseHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1246,36 +1153,20 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/DataActivity.java">
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1260">
-          <caret line="28" column="53" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+        <state relative-caret-position="216">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="129" column="75" selection-start-line="129" selection-start-column="75" selection-end-line="129" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3198#3199#0" expanded="true" />
-            <element signature="e#3237#3238#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="436">
+          <caret line="15" column="67" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="310" column="29" selection-start-line="310" selection-start-column="29" selection-end-line="310" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getNumber#0;class#Gongju#0" />
-            <element signature="method#ShowMsg#0;class#Gongju#0" />
-          </folding>
-        </state>
-      </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1294,30 +1185,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsYucheActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="50" column="43" selection-start-line="49" selection-start-column="7" selection-end-line="50" selection-end-column="43" />
+        <state relative-caret-position="-1872">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://D:/Android/Sdk/sources/android-27/android/content/Context.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="1664" column="25" selection-start-line="1664" selection-start-column="25" selection-end-line="1664" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="128" column="77" lean-forward="true" selection-start-line="128" selection-start-column="77" selection-end-line="128" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getNumber#0;class#Gongju#0" />
+            <element signature="class#RealPathFromUriUtils#0" />
+            <element signature="method#appIsExist#0;class#SystemHelper#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="71" column="85" selection-start-line="71" selection-start-column="75" selection-end-line="71" selection-end-column="85" />
+        <state relative-caret-position="74">
+          <caret line="239" column="82" selection-start-line="239" selection-start-column="72" selection-end-line="239" selection-end-column="82" />
           <folding>
-            <element signature="method#UnCheckAll#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
-            <element signature="method#getCount#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
+            <element signature="method#getDbValue#0;class#LishiAdapter#0" />
+            <element signature="method#checkid#0;class#LishiAdapter#0" />
+            <element signature="method#initMap#0;class#LishiAdapter#0" />
+            <element signature="method#getApplicationContext#0;class#LishiAdapter#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
+        <state relative-caret-position="-720">
           <caret line="98" column="23" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="23" />
           <folding>
             <element signature="e#5249#5376#1" />
@@ -1325,17 +1236,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/LishiAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/PfAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="245" column="38" selection-start-line="245" selection-start-column="38" selection-end-line="245" selection-end-column="38" />
+        <state relative-caret-position="290">
+          <caret line="129" column="75" selection-start-line="129" selection-start-column="75" selection-end-line="129" selection-end-column="75" />
           <folding>
-            <element signature="e#3328#3329#0" expanded="true" />
-            <element signature="e#3367#3368#0" expanded="true" />
-            <element signature="method#getDbValue#0;class#LishiAdapter#0" />
-            <element signature="method#checkid#0;class#LishiAdapter#0" />
-            <element signature="method#initMap#0;class#LishiAdapter#0" />
-            <element signature="method#getApplicationContext#0;class#LishiAdapter#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3198#3199#0" expanded="true" />
+            <element signature="e#3237#3238#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/gyq/fengshui/FsSelectActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="804">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
+          <folding>
+            <element signature="method#UnCheckAll#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
+            <element signature="method#getCount#0;class#MyAdapter2#0;class#FsSelectActivity#0" />
           </folding>
         </state>
       </provider>

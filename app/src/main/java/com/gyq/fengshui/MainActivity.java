@@ -3,12 +3,15 @@ package com.gyq.fengshui;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.LauncherActivity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.hardware.Camera;
@@ -52,9 +55,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,6 +69,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.function.Consumer;
 import android.telephony.TelephonyManager;
+
+import static android.content.Context.ACTIVITY_SERVICE;
 import static android.content.Context.TELEPHONY_SERVICE;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -109,7 +116,8 @@ public class MainActivity extends AppCompatActivity  {
                 Manifest.permission.READ_PHONE_STATE,
               //  Manifest.permission.WRITE_CONTACTS,
                 Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.REORDER_TASKS
         };
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions
@@ -284,8 +292,6 @@ class Gongju {
                     FsChartActivity.reDraw();
                 if(type==2)
                     FsChartActivity.saveData();
-                if(type==3)
-                    FsSelectActivity.ycChoice();
             }
         });
         if(cancel)
@@ -422,5 +428,154 @@ class RealPathFromUriUtils {
      */
     private static boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+}
+class SystemHelper {
+    /**
+     * 判断本地是否已经安装好了指定的应用程序包
+     *
+     * @param packageNameTarget ：待判断的 App 包名，如 微博 com.sina.weibo
+     * @return 已安装时返回 true,不存在时返回 false
+     */
+    public static boolean appIsExist(Context context, String packageNameTarget) {
+        if (!"".equals(packageNameTarget.trim())) {
+            PackageManager packageManager = context.getPackageManager();
+            List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(PackageManager.MATCH_UNINSTALLED_PACKAGES);
+            for (PackageInfo packageInfo : packageInfoList) {
+                String packageNameSource = packageInfo.packageName;
+                if (packageNameSource.equals(packageNameTarget)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 将本应用置顶到最前端
+     * 当本应用位于后台时，则将它切换到最前端
+     *
+     * @param context
+     */
+    public static void setTopApp(Context context) {
+        if (!isRunningForeground(context)) {
+            /**获取ActivityManager*/
+            ActivityManager activityManager = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
+
+            /**获得当前运行的task(任务)*/
+            List<ActivityManager.RunningTaskInfo> taskInfoList = activityManager.getRunningTasks(100);
+            for (ActivityManager.RunningTaskInfo taskInfo : taskInfoList) {
+                /**找到本应用的 task，并将它切换到前台*/
+                if (taskInfo.topActivity.getPackageName().equals(context.getPackageName())) {
+                    activityManager.moveTaskToFront(taskInfo.id, 0);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * 判断本应用是否已经位于最前端
+     *
+     * @param context
+     * @return 本应用已经位于最前端时，返回 true；否则返回 false
+     */
+    public static boolean isRunningForeground(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcessInfoList = activityManager.getRunningAppProcesses();
+        /**枚举进程*/
+        for (ActivityManager.RunningAppProcessInfo appProcessInfo : appProcessInfoList) {
+            if (appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                if (appProcessInfo.processName.equals(context.getApplicationInfo().processName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void startLocalApp(Context context,String packageNameTarget) {
+        if (SystemHelper.appIsExist(context, packageNameTarget)) {
+            PackageManager packageManager = context.getPackageManager();
+            Intent intent = packageManager.getLaunchIntentForPackage(packageNameTarget);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.setFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            /**android.intent.action.MAIN：打开另一程序
+             */
+            intent.setAction("android.intent.action.MAIN");
+            /**
+             * FLAG_ACTIVITY_SINGLE_TOP:
+             * 如果当前栈顶的activity就是要启动的activity,则不会再启动一个新的activity
+             */
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context.getApplicationContext(), "被启动的 APP 未安装", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static boolean isHttpOpen(String ip, int port)
+    {
+        if(isEmpty(ip))
+        {
+            return false;
+        }
+        Socket socket = null;        // socket链接
+        OutputStream os = null;      // 输出流
+        BufferedReader br = null;    // 输入流
+        boolean flag = false;        // 是否开启了HTTP服务
+        try
+        {
+            socket = new Socket(ip, port);
+            os = socket.getOutputStream();
+            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            // 创建HTTP请求报文信息
+            String reqInfo =  "HEAD / HTTP/1.0"
+                    + "\r\n"
+                    + "Host: " + ip + ":" + port
+                    + "\r\n\r\n";
+            System.out.println("请求报文 : \r\n" + reqInfo);
+            // 发送请求消息
+            os.write(reqInfo.getBytes());
+            os.flush();
+            // 接收响应消息
+            String lineStr = null;
+            System.out.println("响应报文 : ");
+            while((lineStr = br.readLine()) != null)
+            {
+                // 读取到了响应信息，表示该ip的port端口提供了HTTP服务
+                System.out.println(lineStr);
+                flag = true;
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                if(br != null)
+                    br.close();
+                if(os != null)
+                    os.close();
+                if(socket != null)
+                    socket.close();
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return flag;
+    }
+
+    private static boolean isEmpty(String str)
+    {
+        if(str == null || str.length() <= 0 || str.trim() == null || str.trim().length() <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 }
