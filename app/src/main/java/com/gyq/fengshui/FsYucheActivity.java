@@ -68,10 +68,14 @@ public class FsYucheActivity extends AppCompatActivity {
         adapter=new MyAdapter3(listData,this);
         mListView.setAdapter(adapter);
     }
-    private String getPf(String dbid,String cx){
+    private ArrayList<String> getPf(String dbid,String cx){
+        ArrayList<String> pfInfo = new ArrayList<String>();
         String shan = "";
         String shui = "";
         String fuzhu = "";
+        String tan = "";
+        String ju = "";
+        String wu = "";
         mydb = new DatabaseHelper(this);
         String[] fn={"shan01","shan02","shan03","shan04","shan05","shan06",
                 "shan07","shan08","shan09","shan10","shan11","shan12",
@@ -157,11 +161,24 @@ public class FsYucheActivity extends AppCompatActivity {
                         new Gongju().Log("fs.txt","cx="+cx+"\n");
                         new Gongju().Log("fs.txt","fs2[1]="+fs2[1]+"\n");
                         String[] pf = fs2[1].split("@");
+                        boolean findfuzhu = false;
                         for(String pf1:pf){
                             new Gongju().Log("fs.txt",pf1+"\n");
                             if(!pf1.contains("=") && pf1.contains("辅")){
                                 new Gongju().Log("fs.txt","pf1="+pf1+"\n");
                                 fuzhu += pf1.replaceAll(" .*","")+"@";
+                                findfuzhu = true;
+                            }
+                            if(findfuzhu) {
+                                if (pf1.contains("贪*"))
+                                    tan += pf1.replaceAll(".*=", "")
+                                            .replaceAll("", "") + "@";
+                                if (pf1.contains("巨-"))
+                                    ju += pf1.replaceAll(".*=", "")
+                                            .replaceAll("", "") + "@";
+                                if (pf1.contains("武-"))
+                                    wu += pf1.replaceAll(".*=", "")
+                                            .replaceAll("", "") + "@";
                             }
                         }
                     }
@@ -169,23 +186,36 @@ public class FsYucheActivity extends AppCompatActivity {
             }
         }
         if(fuzhu.length()>0)
-            fuzhu = fuzhu.replaceAll("@$","");
+            fuzhu = fuzhu.replaceAll("@$","").replaceAll(" ","");
+        if(tan.length()>0)
+            tan = tan.replaceAll("@$","").replaceAll(" ","");
+        if(ju.length()>0)
+            ju = ju.replaceAll("@$","").replaceAll(" ","");
+        if(wu.length()>0)
+            wu = wu.replaceAll("@$","").replaceAll(" ","");
         new Gongju().Log("fs.txt",fuzhu+"\n");
-        return fuzhu;
+        new Gongju().Log("fs.txt","贪="+tan+"\n");
+        new Gongju().Log("fs.txt","巨="+ju+"\n");
+        new Gongju().Log("fs.txt","武="+wu+"\n");
+        pfInfo.add(fuzhu);
+        pfInfo.add(tan);
+        pfInfo.add(ju);
+        pfInfo.add(wu);
+        return pfInfo;
     }
     private ArrayList<Map<String, Object>> getData() {
         if(bdids == null)
             return null;
         if(bdids.length<1)
             return null;
-        String[] fuzhus = new String[bdids.length];
+        ArrayList<String>[] pfInfo = new ArrayList[bdids.length];
         for(int i=0;i<bdids.length;i++){
             new Gongju().Log("fs.txt","i="+i+":\n");
             String bdid = bdids[i];
             String cx = bdcxs[i];
             new Gongju().Log("fs.txt",bdid+"  "+cx+":\n");
-            fuzhus[i] = getPf(bdid,cx);
-            new Gongju().Log("fs.txt",fuzhus[i]+"\n");
+            pfInfo[i] = getPf(bdid,cx);
+    //        new Gongju().Log("fs.txt",fuzhus[i]+"\n");
         }
         ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -201,18 +231,46 @@ public class FsYucheActivity extends AppCompatActivity {
             map.put("gongli", i+"");
             map.put("nongli", nongli);
             int zy = 0;
-            for(int j=0;j<fuzhus.length;j++) {
-                String fuzhu = fuzhus[j];
+            float tan = 0;
+            float ju = 0;
+            float wu = 0;
+            for(int j=0;j<pfInfo.length;j++) {
+                String fuzhu = pfInfo[j].get(0);
+                new Gongju().Log("fs.txt","i="+i+",fuzhu="+fuzhu+"\n");
                 String[] fzs = fuzhu.split("@");
                 for(int k=0;k<fzs.length;k++){
-                    if(nongli.contains(fzs[k]))
+                    if(nongli.contains(fzs[k])) {
+                        new Gongju().Log("fs.txt",
+                                "j="+j+",tan="+pfInfo[j].get(1)+"\n");
+                        new Gongju().Log("fs.txt",
+                                "j="+j+",ju="+pfInfo[j].get(2)+"\n");
+                        new Gongju().Log("fs.txt",
+                                "j="+j+",wu="+pfInfo[j].get(3)+"\n");
                         zy++;
+                        tan += Float.valueOf(pfInfo[j].get(1));
+                        ju += Float.valueOf(pfInfo[j].get(2));
+                        wu += Float.valueOf(pfInfo[j].get(3));
+                    }
                 }
             }
-            map.put("fs1", ""+zy);
-            map.put("fs2", "0");
-            map.put("fs3", "0");
+            map.put("fn", ""+zy);
+            map.put("fs1", ""+Math.round(tan));
+            map.put("fs2", ""+Math.round(ju));
+            map.put("fs3", ""+Math.round(wu));
+            map.put("sum", ""+Math.round(tan+ju+wu));
             list.add(map);
+            new Gongju().Log("fs.txt",
+                    "gongli="+i+"\n");
+            new Gongju().Log("fs.txt",
+                    "nongli="+nongli+"\n");
+            new Gongju().Log("fs.txt",
+                    "i="+i+",tan="+Math.round(tan)+"\n");
+            new Gongju().Log("fs.txt",
+                    "i="+i+",ju="+Math.round(ju)+"\n");
+            new Gongju().Log("fs.txt",
+                    "i="+i+",wu="+Math.round(wu)+"\n");
+            new Gongju().Log("fs.txt",
+                    "i="+i+",sum="+Math.round(tan+ju+wu)+"\n");
         }
         Collections.reverse(list);
         return list;
@@ -255,12 +313,16 @@ public class FsYucheActivity extends AppCompatActivity {
             glTv.setText(listData.get(position).get("gongli").toString());
             TextView nlTv=(TextView)view.findViewById(R.id.tv_fs_nl);
             nlTv.setText(listData.get(position).get("nongli").toString());
+            TextView fnTv=(TextView)view.findViewById(R.id.tv_fs_fn);
+            fnTv.setText(listData.get(position).get("fn").toString());
             TextView fs1Tv=(TextView)view.findViewById(R.id.tv_fs_fs1);
             fs1Tv.setText(listData.get(position).get("fs1").toString());
             TextView fs2Tv=(TextView)view.findViewById(R.id.tv_fs_fs2);
             fs2Tv.setText(listData.get(position).get("fs2").toString());
             TextView fs3Tv=(TextView)view.findViewById(R.id.tv_fs_fs3);
             fs3Tv.setText(listData.get(position).get("fs3").toString());
+            TextView fsSumTv=(TextView)view.findViewById(R.id.tv_fs_sum);
+            fsSumTv.setText(listData.get(position).get("sum").toString());
             return view;
         }
     }
