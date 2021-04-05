@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@android:color/darker_gray"
         android:layout_marginLeft="10dip" />
     <TableLayout
         android:layout_width="match_parent"
@@ -23,20 +24,38 @@
             android:layout_height="wrap_content">
              <ImageButton
                 android:id="@+id/imgBtnSC"
-                android:layout_width="match_parent"
+                android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
                 android:background="@drawable/shanchu" />
             <ImageButton
                 android:id="@+id/imgBtnBZ"
-                android:layout_width="match_parent"
+                android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
                 android:background="@drawable/biaozhu" />
             <TextView
                 android:id="@+id/item_note"
-                android:layout_width="160dp"
+                android:layout_width="70dp"
                 android:layout_height="60dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="5dp"
+                android:textColor="#F00"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/item_cx"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="5dp"
+                android:textColor="#F00"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/item_sj"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginLeft="5dp"
                 android:textColor="#F00"
                 android:textSize="20sp" />
         </TableRow>

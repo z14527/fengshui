@@ -74,7 +74,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "shui21 varchar(3)," +
                 "shui22 varchar(3)," +
                 "shui23 varchar(3)," +
-                "shui24 varchar(3))";
+                "shui24 varchar(3)," +
+                "cx varchar(20)," +
+                "sj varchar(4))";
         db.execSQL(sql);
     }
 
@@ -108,6 +110,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("id", id1);
         cv.put("name", name1);
         cv.put("note", note1);
+        cv.put("cx","");
+        cv.put("sj","");
         Date date = new Date(System.currentTimeMillis());
         cv.put("ct", simpleDateFormat.format(date));
         for (int i = 1; i <= 24; i++) {

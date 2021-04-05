@@ -37,6 +37,8 @@
             final ImageButton btxsc = (ImageButton) findViewById(R.id.imgBtnSC);
             final ImageButton btxbz = (ImageButton) findViewById(R.id.imgBtnBZ);
             final TextView textNote = (TextView)findViewById(R.id.item_note);
+            final TextView textCx = (TextView)findViewById(R.id.item_cx);
+            final TextView textSj = (TextView)findViewById(R.id.item_sj);
             dbid = getIntent().getStringExtra("id");
             if(dbid != null) {
 //                btxmm.setVisibility(View.INVISIBLE);//.setClickable(false);
@@ -45,6 +47,11 @@
                 String note = getIntent().getStringExtra("note");
                 setTitle("风水大师 （" + name + "）");
                 textNote.setText(note);
+                String cx = getIntent().getStringExtra("cx");
+                textCx.setText(cx);
+                String sj = getIntent().getStringExtra("sj");
+                setTitle("风水大师 （" + name + "）");
+                textSj.setText(sj);
                 MyListView();
             }else{
 //                btxmm.setVisibility(View.VISIBLE);//.setClickable(false);
@@ -129,6 +136,119 @@
                     dialog.show();
                 }
             });
+            textCx.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(dbid == null)
+                        return;
+                    String[] subj ={"坐[子癸]朝[午丁]",
+                            "坐[癸丑]朝[丁未]",
+                            "坐[丑艮]朝[未坤]",
+                            "坐[艮寅]朝[坤申]",
+                            "坐[寅甲]朝[申庚]",
+                            "坐[甲卯]朝[庚酉]",
+                            "坐[卯乙]朝[酉辛]",
+                            "坐[乙辰]朝[辛戌]",
+                            "坐[辰巽]朝[戌乾]",
+                            "坐[巽巳]朝[乾亥]",
+                            "坐[巳丙]朝[亥壬]",
+                            "坐[丙午]朝[壬子]",
+                            "坐[午丁]朝[子癸]",
+                            "坐[丁未]朝[癸丑]",
+                            "坐[未坤]朝[丑艮]",
+                            "坐[坤申]朝[艮寅]",
+                            "坐[申庚]朝[寅甲]",
+                            "坐[庚酉]朝[甲卯]",
+                            "坐[酉辛]朝[卯乙]",
+                            "坐[辛戌]朝[乙辰]",
+                            "坐[戌乾]朝[辰巽]",
+                            "坐[乾亥]朝[巽巳]",
+                            "坐[亥壬]朝[巳丙]",
+                            "坐[壬子]朝[丙午]",
+                            "坐[子]朝[午]",
+                            "坐[癸]朝[丁]",
+                            "坐[丑]朝[未]",
+                            "坐[艮]朝[坤]",
+                            "坐[寅]朝[申]",
+                            "坐[甲]朝[庚]",
+                            "坐[卯]朝[酉]",
+                            "坐[乙]朝[辛]",
+                            "坐[辰]朝[戌]",
+                            "坐[巽]朝[乾]",
+                            "坐[巳]朝[亥]",
+                            "坐[丙]朝[壬]",
+                            "坐[午]朝[子]",
+                            "坐[丁]朝[癸]",
+                            "坐[未]朝[丑]",
+                            "坐[坤]朝[艮]",
+                            "坐[申]朝[寅]",
+                            "坐[庚]朝[甲]",
+                            "坐[酉]朝[卯]",
+                            "坐[辛]朝[乙]",
+                            "坐[戌]朝[辰]",
+                            "坐[乾]朝[巽]",
+                            "坐[亥]朝[巳]",
+                            "坐[壬]朝[丙]",
+                            ""};
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Input_Activity.this);
+                    builder.setTitle("请选择朝向：");    //设置对话框标题
+
+                    builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
+
+                    builder.setSingleChoiceItems(subj, 0, new DialogInterface.OnClickListener() {
+                        // 第二个参数为默认选中项 在这里设为第一项
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String cx = subj[which];
+                            mydb =new DatabaseHelper(Input_Activity.this);
+                            mydb.update(dbid,"cx",cx);
+                            Toast.makeText(Input_Activity.this, "你选择了："+cx+" 这朝向", Toast.LENGTH_SHORT).show();
+                            //        cxTv.setText(cx);
+                            textCx.setText(cx);
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();  //创建对话框
+                    dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+                    dialog.show();
+                }
+            });
+            textSj.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(dbid == null)
+                        return;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Input_Activity.this);
+                    builder.setTitle("请输入宝地的迁入年份（公历）：");    //设置对话框标题
+                    builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
+                    final EditText edit = new EditText(Input_Activity.this);
+                    builder.setView(edit);
+                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String sj = edit.getText().toString();
+                            mydb =new DatabaseHelper(Input_Activity.this);
+                            mydb.update(dbid,"sj",sj);
+                            Toast.makeText(Input_Activity.this, "你输入的是："+sj+" 年", Toast.LENGTH_SHORT).show();
+                            textSj.setText(sj);
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(Input_Activity.this, "你点了取消", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(true);    //设置按钮是否可以按返回键取消,false则不可以取消
+                    AlertDialog dialog = builder.create();  //创建对话框
+                    dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+                    dialog.show();
+                }
+            });
+
+
             btxsc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

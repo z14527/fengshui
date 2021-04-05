@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/luopan"
@@ -21,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FsSelectActivity"></activity>
+        <activity android:name=".FsSelectActivity" />
         <activity android:name=".PfActivity" />
         <activity android:name=".FsChartActivity" />
         <activity android:name=".MainActivity">

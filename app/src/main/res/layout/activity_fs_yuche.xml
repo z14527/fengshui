@@ -11,7 +11,7 @@
         <TextView
             android:id="@+id/tv_yt1"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dip"
+            android:layout_width="45dip"
             android:layout_height="50dp"
             android:text="公历"
             android:background="@android:color/darker_gray"
@@ -20,7 +20,7 @@
         <TextView
             android:id="@+id/tv_yt2"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dip"
+            android:layout_width="45dip"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="农历"
@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/tv_yt3"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dip"
+            android:layout_width="45dip"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="个数"
@@ -40,7 +40,7 @@
         <TextView
             android:id="@+id/tv_yt4"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dip"
+            android:layout_width="45dip"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="分1"
@@ -50,7 +50,7 @@
         <TextView
             android:id="@+id/tv_yt5"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dip"
+            android:layout_width="45dip"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="分2"
@@ -60,7 +60,7 @@
         <TextView
             android:id="@+id/tv_yt6"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dip"
+            android:layout_width="45dip"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="分3"
@@ -70,7 +70,7 @@
         <TextView
             android:id="@+id/tv_yt7"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dip"
+            android:layout_width="45dip"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="总分"
