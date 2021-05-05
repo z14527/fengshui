@@ -239,7 +239,7 @@ public class LishiAdapter extends BaseAdapter {
                 try {
                     SystemHelper.startLocalApp(getApplicationContext(),"com.termux");
                     int i = 0;
-                    while(!SystemHelper.isHttpOpen(MainActivity.r_ip,Integer.parseInt(MainActivity.r_port))
+                    while(!SystemHelper.isHttpOpen(MainActivity.r_ip_1,Integer.parseInt(MainActivity.r_port_1))
                             && i<20) {
                         Thread.sleep(100);
                         i++;

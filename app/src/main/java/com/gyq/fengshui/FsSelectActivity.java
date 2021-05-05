@@ -67,7 +67,7 @@ public class FsSelectActivity extends AppCompatActivity {
                 try {
                     SystemHelper.startLocalApp(getApplicationContext(),"com.termux");
                     int i = 0;
-                    while(!SystemHelper.isHttpOpen(MainActivity.r_ip,Integer.parseInt(MainActivity.r_port))
+                    while(!SystemHelper.isHttpOpen(MainActivity.r_ip_1,Integer.parseInt(MainActivity.r_port_1))
                             && i<20) {
                         Thread.sleep(100);
                         i++;
@@ -85,6 +85,7 @@ public class FsSelectActivity extends AppCompatActivity {
                 intent.putExtra("ids",adapter.bdids);
                 intent.putExtra("cxs",adapter.cxs);
                 intent.putExtra("sjs",adapter.sjs);
+                intent.putExtra("cx2s",adapter.cx2s);
                 startActivity(intent);
             }
         });
@@ -92,7 +93,7 @@ public class FsSelectActivity extends AppCompatActivity {
     private ArrayList<Map<String, Object>> getData() {
         //图片资源
         mydb = new DatabaseHelper(FsSelectActivity.this);
-        String[] fn = {"id","name","cx","sj","note"};
+        String[] fn = {"id","name","cx","sj","note","cx2"};
         Cursor c1 = null;
         c1 = mydb.select(fn);
         ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -104,6 +105,7 @@ public class FsSelectActivity extends AppCompatActivity {
             map.put("cx", c1.getString(2));
             map.put("sj", c1.getString(3));
             map.put("note", c1.getString(4));
+            map.put("cx2", c1.getString(5));
             list.add(map);
         }
         Collections.reverse(list);
@@ -116,6 +118,7 @@ public class FsSelectActivity extends AppCompatActivity {
         public String bdnames = "";
         public String bdids = "";
         public String cxs = "";
+        public String cx2s = "";
         public String sjs = "";
         private Map<Integer,Boolean> map=new HashMap<>();
         public MyAdapter2(ArrayList<Map<String,Object>> listData,Context context){
@@ -137,11 +140,13 @@ public class FsSelectActivity extends AppCompatActivity {
             bdids = "";
             cxs = "";
             sjs = "";
+            cx2s = "";
             for (int i = 0; i < listData.size(); i++) {
                 map.put(i,true);
                 bdnames += listData.get(i).get("name").toString()+",";
                 bdids += listData.get(i).get("id").toString()+",";
                 cxs += listData.get(i).get("cx").toString()+",";
+                cx2s += listData.get(i).get("cx2").toString()+",";
                 sjs += listData.get(i).get("sj").toString()+",";
             }
             bdnames = bdnames.replaceAll(",$","");
@@ -268,9 +273,97 @@ public class FsSelectActivity extends AppCompatActivity {
                             String cx = subj[which];
                             mydb =new DatabaseHelper(FsSelectActivity.this);
                             mydb.update(dbid,"cx",cx);
-                            Toast.makeText(FsSelectActivity.this, "你选择了："+cx+" 这朝向", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FsSelectActivity.this, "你选择了：" + cx + " 这朝向",
+                                    Toast.LENGTH_SHORT).show();
                     //        cxTv.setText(cx);
                             listData.get(position).put("cx",cx);
+                            notifyDataSetChanged();
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();  //创建对话框
+                    dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+                    dialog.show();
+                }
+            });
+
+            TextView cxTv2 = (TextView)view.findViewById(R.id.tv_fs_cx2);
+            String cx2 = listData.get(position).get("cx2").toString();
+            if(cx2.equals(""))
+                cxTv2.setText("  ...  ");
+            else
+                cxTv2.setText(cx2);
+            cxTv2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String dbid = listData.get(position).get("id").toString();
+                    if(dbid == null)
+                        return;
+                    String[] subj ={"坐[子癸]朝[午丁]",
+                            "坐[癸丑]朝[丁未]",
+                            "坐[丑艮]朝[未坤]",
+                            "坐[艮寅]朝[坤申]",
+                            "坐[寅甲]朝[申庚]",
+                            "坐[甲卯]朝[庚酉]",
+                            "坐[卯乙]朝[酉辛]",
+                            "坐[乙辰]朝[辛戌]",
+                            "坐[辰巽]朝[戌乾]",
+                            "坐[巽巳]朝[乾亥]",
+                            "坐[巳丙]朝[亥壬]",
+                            "坐[丙午]朝[壬子]",
+                            "坐[午丁]朝[子癸]",
+                            "坐[丁未]朝[癸丑]",
+                            "坐[未坤]朝[丑艮]",
+                            "坐[坤申]朝[艮寅]",
+                            "坐[申庚]朝[寅甲]",
+                            "坐[庚酉]朝[甲卯]",
+                            "坐[酉辛]朝[卯乙]",
+                            "坐[辛戌]朝[乙辰]",
+                            "坐[戌乾]朝[辰巽]",
+                            "坐[乾亥]朝[巽巳]",
+                            "坐[亥壬]朝[巳丙]",
+                            "坐[壬子]朝[丙午]",
+                            "坐[子]朝[午]",
+                            "坐[癸]朝[丁]",
+                            "坐[丑]朝[未]",
+                            "坐[艮]朝[坤]",
+                            "坐[寅]朝[申]",
+                            "坐[甲]朝[庚]",
+                            "坐[卯]朝[酉]",
+                            "坐[乙]朝[辛]",
+                            "坐[辰]朝[戌]",
+                            "坐[巽]朝[乾]",
+                            "坐[巳]朝[亥]",
+                            "坐[丙]朝[壬]",
+                            "坐[午]朝[子]",
+                            "坐[丁]朝[癸]",
+                            "坐[未]朝[丑]",
+                            "坐[坤]朝[艮]",
+                            "坐[申]朝[寅]",
+                            "坐[庚]朝[甲]",
+                            "坐[酉]朝[卯]",
+                            "坐[辛]朝[乙]",
+                            "坐[戌]朝[辰]",
+                            "坐[乾]朝[巽]",
+                            "坐[亥]朝[巳]",
+                            "坐[壬]朝[丙]",
+                            ""};
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FsSelectActivity.this);
+                    builder.setTitle("请选择朝向（内）：");    //设置对话框标题
+
+                    builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
+
+                    builder.setSingleChoiceItems(subj, 0, new DialogInterface.OnClickListener() {
+                        // 第二个参数为默认选中项 在这里设为第一项
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String cx2 = subj[which];
+                            mydb =new DatabaseHelper(FsSelectActivity.this);
+                            mydb.update(dbid,"cx2",cx2);
+                            Toast.makeText(FsSelectActivity.this, "你选择了：" + cx2 + " 这朝向",
+                                    Toast.LENGTH_SHORT).show();
+                            //        cxTv.setText(cx);
+                            listData.get(position).put("cx2",cx2);
                             notifyDataSetChanged();
                             dialog.dismiss();
                         }

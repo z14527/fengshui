@@ -202,6 +202,7 @@
                             String cx = subj[which];
                             mydb =new DatabaseHelper(Input_Activity.this);
                             mydb.update(dbid,"cx",cx);
+                            mydb.update(dbid,"cx2",cx);
                             Toast.makeText(Input_Activity.this, "你选择了："+cx+" 这朝向", Toast.LENGTH_SHORT).show();
                             //        cxTv.setText(cx);
                             textCx.setText(cx);

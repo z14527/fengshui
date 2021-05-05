@@ -5,12 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,6 +43,7 @@ public class FsYucheActivity extends AppCompatActivity {
     private String[] bdnames = null;
     private String[] bdids = null;
     private String[] bdcxs = null;
+    private String[] bdcx2s = null;
     private String[] bdsjs = null;
 
     @Override
@@ -58,17 +61,38 @@ public class FsYucheActivity extends AppCompatActivity {
         String cxs = getIntent().getStringExtra("cxs");
         if(cxs!="")
             bdcxs = cxs.split(",");
+        String cx2s = getIntent().getStringExtra("cx2s");
+        if(cx2s!="")
+            bdcx2s = cx2s.split(",");
         String sjs = getIntent().getStringExtra("sjs");
         if(sjs!="")
             bdsjs = sjs.split(",");
         setTitle("宝地预测："+names);
-        new Gongju().Log("fs.txt",names+"\n"+ids+"\n"+cxs+"\n"+sjs+"\n");
+        new Gongju().Log("fs.txt",names+"\n"+ids+"\n"+cxs+"\n"+cx2s+"\n"+sjs+"\n");
         listData = getData();
         mListView = (ListView) findViewById(R.id.FsYucheListView);
         adapter=new MyAdapter3(listData,this);
         mListView.setAdapter(adapter);
+        mListView.setSelection(mListView.getCount()/2-1);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
+                Map<String, Object> map = listData.get(arg2);
+                String bdn = map.get("fn").toString();
+                if(bdn.contains("-1") || bdn.contains("-2")) {
+                    String info = map.get("info").toString();
+                    info = info.replaceAll("@", "\n");
+                    new Gongju().ShowMsg(arg1.getContext(),
+                            "评分具体情况（" + bdn + "）", info, false,
+                            -1);
+                }
+
+            }
+        });
+
+
     }
-    private ArrayList<String> getPf(String dbid,String cx){
+    private ArrayList<String> getPf(String dbid,String cx,String cx2){
         ArrayList<String> pfInfo = new ArrayList<String>();
         String shan = "";
         String shui = "";
@@ -159,6 +183,30 @@ public class FsYucheActivity extends AppCompatActivity {
             //     new Gongju().Log("fs.txt","URL 返回:\n"+info+":\n");
             String[] fs = info.split("#");
             //Toast.makeText(this,"fs长度="+fs.length,Toast.LENGTH_LONG).show();
+            boolean findfuzhu = false;
+            for(String fs1:fs){
+                //Toast.makeText(this,fs1,Toast.LENGTH_LONG).show();
+                String[] fs2 = fs1.split("/");
+                if(fs2.length>1) {
+                    //  Toast.makeText(this,fs2[0],Toast.LENGTH_LONG).show();
+                    //  Toast.makeText(this,fs2[1],Toast.LENGTH_LONG).show();
+                    new Gongju().Log("fs.txt","fs2[0]="+fs2[0]+"\n");
+                    if(fs2[0].replaceAll(" ","").contains(cx2)){
+                        new Gongju().Log("fs.txt","cx2="+cx2+"\n");
+                        new Gongju().Log("fs.txt","fs2[1]="+fs2[1]+"\n");
+                        detail0 = fs2[1];
+                        String[] pf = fs2[1].split("@");
+                        for(String pf1:pf){
+                            new Gongju().Log("fs.txt",pf1+"\n");
+                            if(!pf1.contains("=") && pf1.contains("辅")){
+                                new Gongju().Log("fs.txt","pf1="+pf1+"\n");
+                                fuzhu += pf1.replaceAll(" .*","")+"@";
+                                findfuzhu = true;
+                            }
+                        }
+                    }
+                }
+            }
             for(String fs1:fs){
                 //Toast.makeText(this,fs1,Toast.LENGTH_LONG).show();
                 String[] fs2 = fs1.split("/");
@@ -171,14 +219,8 @@ public class FsYucheActivity extends AppCompatActivity {
                         new Gongju().Log("fs.txt","fs2[1]="+fs2[1]+"\n");
                         detail0 = fs2[1];
                         String[] pf = fs2[1].split("@");
-                        boolean findfuzhu = false;
+                        //  boolean findfuzhu = false;
                         for(String pf1:pf){
-                            new Gongju().Log("fs.txt",pf1+"\n");
-                            if(!pf1.contains("=") && pf1.contains("辅")){
-                                new Gongju().Log("fs.txt","pf1="+pf1+"\n");
-                                fuzhu += pf1.replaceAll(" .*","")+"@";
-                                findfuzhu = true;
-                            }
                             if(findfuzhu) {
                                 if (pf1.contains("贪*"))
                                     tan += pf1.replaceAll(".*=", "")
@@ -190,29 +232,31 @@ public class FsYucheActivity extends AppCompatActivity {
                                     wu += pf1.replaceAll(".*=", "")
                                             .replaceAll("", "") + "@";
                             }
-                            if(pf1.contains("=") && pf1.contains("贪")){
-                                detail1 = pf1.replaceAll(".*=","");
-                            }
-                            if(pf1.contains("=") && pf1.contains("巨")){
-                                detail2 = pf1.replaceAll(".*=","");
-                            }
-                            if(pf1.contains("=") && pf1.contains("禄")){
-                                detail3 = pf1.replaceAll(".*=","");
-                            }
-                            if(pf1.contains("=") && pf1.contains("文")){
-                                detail4 = pf1.replaceAll(".*=","");
-                            }
-                            if(pf1.contains("=") && pf1.contains("廉")){
-                                detail5 = pf1.replaceAll(".*=","");
-                            }
-                            if(pf1.contains("=") && pf1.contains("武")){
-                                detail6 = pf1.replaceAll(".*=","");
-                            }
-                            if(pf1.contains("=") && pf1.contains("破")){
-                                detail7 = pf1.replaceAll(".*=","");
-                            }
-                            if(pf1.contains("=") && pf1.contains("辅")){
-                                detail8 = pf1.replaceAll(".*=","");
+                            if(!pf1.contains("-") && !pf1.contains("sum")) {
+                                if (pf1.contains("=") && pf1.contains("贪")) {
+                                    detail1 = pf1.replaceAll(".*=", "");
+                                }
+                                if (pf1.contains("=") && pf1.contains("巨")) {
+                                    detail2 = pf1.replaceAll(".*=", "");
+                                }
+                                if (pf1.contains("=") && pf1.contains("禄")) {
+                                    detail3 = pf1.replaceAll(".*=", "");
+                                }
+                                if (pf1.contains("=") && pf1.contains("文")) {
+                                    detail4 = pf1.replaceAll(".*=", "");
+                                }
+                                if (pf1.contains("=") && pf1.contains("廉")) {
+                                    detail5 = pf1.replaceAll(".*=", "");
+                                }
+                                if (pf1.contains("=") && pf1.contains("武")) {
+                                    detail6 = pf1.replaceAll(".*=", "");
+                                }
+                                if (pf1.contains("=") && pf1.contains("破")) {
+                                    detail7 = pf1.replaceAll(".*=", "");
+                                }
+                                if (pf1.contains("=") && pf1.contains("辅")) {
+                                    detail8 = pf1.replaceAll(".*=", "");
+                                }
                             }
                         }
                     }
@@ -256,8 +300,9 @@ public class FsYucheActivity extends AppCompatActivity {
             new Gongju().Log("fs.txt","i="+i+":\n");
             String bdid = bdids[i];
             String cx = bdcxs[i];
-            new Gongju().Log("fs.txt",bdid+"  "+cx+":\n");
-            pfInfo[i] = getPf(bdid,cx);
+            String cx2 = bdcx2s[i];
+            new Gongju().Log("fs.txt",bdid+"  "+cx+"  "+cx2+":\n");
+            pfInfo[i] = getPf(bdid,cx,cx2);
     //        new Gongju().Log("fs.txt",fuzhus[i]+"\n");
         }
         ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -290,36 +335,42 @@ public class FsYucheActivity extends AppCompatActivity {
                         new Gongju().Log("fs.txt",
                                 "j="+j+",wu="+pfInfo[j].get(3)+"\n");
                         zy++;
-                        tan += Float.valueOf(pfInfo[j].get(1));
-                        ju += Float.valueOf(pfInfo[j].get(2));
-                        wu += Float.valueOf(pfInfo[j].get(3));
                     }
-                }
+                 }
+                tan += Float.valueOf(pfInfo[j].get(1));
+                ju += Float.valueOf(pfInfo[j].get(2));
+                wu += Float.valueOf(pfInfo[j].get(3));
             }
             map.put("fn", ""+zy);
             map.put("fs1", ""+Math.round(tan));
             map.put("fs2", ""+Math.round(ju));
             map.put("fs3", ""+Math.round(wu));
             map.put("sum", ""+Math.round(tan+ju+wu));
+            map.put("cx2","");
+            map.put("info","");
             list.add(map);
             for(int j=0;j<pfInfo.length;j++) {
                 Map<String, Object> map2 = new HashMap<String, Object>();
-                map2.put("gongli", "");
-                map2.put("nongli", "");
-                map2.put("fn", bdnames[j]);
+                map2.put("gongli", i+"");
+                map2.put("nongli", nongli);
+                map2.put("fn", bdnames[j] + "-1");
                 map2.put("fs1", pfInfo[j].get(5));
                 map2.put("fs2", pfInfo[j].get(6));
                 map2.put("fs3", pfInfo[j].get(7));
                 map2.put("sum", pfInfo[j].get(8));
+                map2.put("cx2",bdcx2s[j]);
+                map2.put("info",pfInfo[j].get(4));
                 list.add(map2);
                 Map<String, Object> map3 = new HashMap<String, Object>();
-                map3.put("gongli", "");
-                map3.put("nongli", "");
-                map3.put("fn", bdnames[j]);
+                map3.put("gongli", i+"");
+                map3.put("nongli", nongli);
+                map3.put("fn", bdnames[j] + "-2");
                 map3.put("fs1", pfInfo[j].get(9));
                 map3.put("fs2", pfInfo[j].get(10));
                 map3.put("fs3", pfInfo[j].get(11));
                 map3.put("sum", pfInfo[j].get(12));
+                map3.put("cx2",bdcx2s[j]);
+                map3.put("info",pfInfo[j].get(4));
                 list.add(map3);
             }
 //            new Gongju().Log("fs.txt",
@@ -378,16 +429,85 @@ public class FsYucheActivity extends AppCompatActivity {
             nlTv.setText(listData.get(position).get("nongli").toString());
             TextView fnTv=(TextView)view.findViewById(R.id.tv_fs_fn);
             fnTv.setText(listData.get(position).get("fn").toString());
+            String fn = listData.get(position).get("fn").toString();
+            if(!fn.equals("0"))
+                fnTv.setTextColor(Color.RED);
+            else
+                fnTv.setTextColor(nlTv.getCurrentTextColor());
             TextView fs1Tv=(TextView)view.findViewById(R.id.tv_fs_fs1);
-            fs1Tv.setText(listData.get(position).get("fs1").toString());
             TextView fs2Tv=(TextView)view.findViewById(R.id.tv_fs_fs2);
-            fs2Tv.setText(listData.get(position).get("fs2").toString());
             TextView fs3Tv=(TextView)view.findViewById(R.id.tv_fs_fs3);
-            fs3Tv.setText(listData.get(position).get("fs3").toString());
             TextView fsSumTv=(TextView)view.findViewById(R.id.tv_fs_sum);
+            if(!fn.contains("-1") && !fn.contains("-2")){
+                fs1Tv.setTextColor(nlTv.getCurrentTextColor());
+                fs2Tv.setTextColor(nlTv.getCurrentTextColor());
+                fs3Tv.setTextColor(nlTv.getCurrentTextColor());
+                fsSumTv.setTextColor(nlTv.getCurrentTextColor());
+            }
+            fs1Tv.setText(listData.get(position).get("fs1").toString());
+            fs2Tv.setText(listData.get(position).get("fs2").toString());
+            fs3Tv.setText(listData.get(position).get("fs3").toString());
             fsSumTv.setText(listData.get(position).get("sum").toString());
+            String nongli = listData.get(position).get("nongli").toString();
+            String info = listData.get(position).get("info").toString();
+            if(fn.contains("-1") || fn.contains("-2")){
+                glTv.setText("");
+                nlTv.setText("");
+                int[] pg = pinggu(nongli,info);
+                if(pg[0]>0 && fn.contains("-1"))
+                    fs1Tv.setTextColor(Color.RED);
+                if(pg[1]>0 && fn.contains("-1"))
+                    fs2Tv.setTextColor(Color.RED);
+                if(pg[2]>0 && fn.contains("-1"))
+                    fs3Tv.setTextColor(Color.RED);
+                if(pg[3]>0 && fn.contains("-1"))
+                    fsSumTv.setTextColor(Color.RED);
+                if(pg[4]>0 && fn.contains("-2"))
+                    fs1Tv.setTextColor(Color.RED);
+                if(pg[5]>0 && fn.contains("-2"))
+                    fs2Tv.setTextColor(Color.RED);
+                if(pg[6]>0 && fn.contains("-2"))
+                    fs3Tv.setTextColor(Color.RED);
+                if(pg[7]>0 && fn.contains("-2"))
+                    fsSumTv.setTextColor(Color.RED);
+            }
             return view;
         }
     }
+    public int[] pinggu(String nongli, String info){
+        int[] ret = {0,0,0,0,0,0,0,0};
+        if(info.equals(""))
+            return ret;
+        String fs24 = "子癸丑艮寅甲卯乙辰巽巳丙午丁未坤申庚酉辛戌乾亥壬子癸丑艮寅甲卯乙辰巽巳丙午丁未坤申庚酉辛戌乾亥壬";
+        String ns = nongli+nongli;
+        String ps = "贪巨禄文廉武破辅贪巨禄文廉武破辅";
+        for(int i = 0;i < 8;i++){
+            String fs1 = fs24.substring(i,i+1);
+            String fs2 = fs24.substring(i+8,i+8+1);
+            String fs3 = fs24.substring(i+16,i+16+1);
+            for(int j = 0;j < 2;j++) {
+                String ns1 = ns.substring(j,j+1);
+                new Gongju().Log("fs.txt","i="+i+
+                        " j="+j+
+                        " fsi="+fs1+
+                        " fsi8="+fs2+
+                        " fsi16="+fs3+
+                        " nsj="+ns1+"\n");
+                if(fs1.equals(ns1) || fs2.equals(ns1) || fs3.equals(ns1)){
+                    for(int k = 0;k < 8;k++) {
+                        String ps1 = ps.substring(k,k+1);
+                        if (info.contains(fs1 + " " + ps1))
+                            ret[k] = 1;
+                        if (info.contains(fs2 + " " + ps1))
+                            ret[k] = 1;
+                        if (info.contains(fs3 + " " + ps1))
+                            ret[k] = 1;
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+
 
 }

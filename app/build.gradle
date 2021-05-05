@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -26,6 +29,17 @@ android {
         targetCompatibility = 1.8
         sourceCompatibility = 1.8
     }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def fileName
+            if (variant.buildType.name.equals('release')) {
+                fileName = "fengshui_"+"${variant.mergedFlavor.versionName}_"+releaseTime()+"_release.apk"
+            } else if (variant.buildType.name.equals('debug')) {
+                fileName = "fengshui_"+"${variant.mergedFlavor.versionName}_"+releaseTime()+"_debug.apk"
+            }
+            outputFileName = fileName;
+        }
+    }
 
 }
 
@@ -42,9 +56,5 @@ dependencies {
     implementation files('httpmime-4.5.6.jar')
     implementation files('commons-net-3.6.jar')
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.4'
     implementation 'com.zhy.base:fileprovider:1.0.0'
-    implementation files('D:\\android-projects\\fengshui\\REngine.jar')
-    implementation files('D:\\android-projects\\fengshui\\Rserve.jar')
 }

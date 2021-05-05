@@ -83,10 +83,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.rosuda.REngine.REXPMismatchException;
-import org.rosuda.REngine.REngineException;
-import org.rosuda.REngine.Rserve.RConnection;
-import org.rosuda.REngine.Rserve.RserveException;
+//import org.rosuda.REngine.REXPMismatchException;
+//import org.rosuda.REngine.REngineException;
+//import org.rosuda.REngine.Rserve.RConnection;
+//import org.rosuda.REngine.Rserve.RserveException;
 
 import static android.widget.Toast.*;
 
@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity  {
     public static String pf_url = "";
     public static String r_ip = "127.0.0.1";
     public static String r_port = "9091";
+    public static String r_ip_1 = "127.0.0.1";
+    public static String r_port_1 = "9091";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
