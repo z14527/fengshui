@@ -57,6 +57,8 @@ public class DrawingView extends View {
 
     private float x0 = 0;//726;
     private float y0 = 0;//651;
+    private float x1 = 0;//726;
+    private float y1 = 0;//651;
     private float r = 0;//(1090-726);
     private int clickCount = 0;
 
@@ -423,10 +425,6 @@ public class DrawingView extends View {
             return;
         boolean bXY0 = false;
         boolean bR = false;
-        int x1 = 0;
-        int y1 = 0;
-        int r2 = 0;
-        int b2 = 0;
         for (int i = 0; i < mBitmap.getWidth(); i++) {
             for (int j = 0; j < mBitmap.getHeight(); j++) {
                 //获得Bitmap 图片中每一个点的color颜色值
@@ -436,18 +434,15 @@ public class DrawingView extends View {
                 int r1 = Color.red(color);
                 int g1 = Color.green(color);
                 int b1 = Color.blue(color);
-                int a1 =Color.alpha(color);
-                if(r1>200 && g1<10 && b1<10) {
+                if(r1>=100 && g1<1 && b1<1) {
                     bXY0 = true;
                     x0 = i;
                     y0 = j;
-                    r2 = r1;
                 }
-                if(b1>200 && g1<10 && r1<10) {
+                if(g1>=100 && b1<1 && r1<1) {
                     bR = true;
                     x1 = i;
                     y1 = j;
-                    b2 = b1;
                 }
                 if(bR && bXY0) {
                     break;
@@ -458,5 +453,21 @@ public class DrawingView extends View {
             }
         }
         r = (float)sqrt((x1-x0)*(x1-x0)+(y1-y0)*(y1-y0));
+//        sendMsg("(x0,y0)=("+x0+","+y0+")\nr="+r, 5);
+    }
+    public float getX0(){
+        return x0;
+    }
+    public float gety0(){
+        return y0;
+    }
+    public float getX1(){
+        return x1;
+    }
+    public float gety1(){
+        return y1;
+    }
+    public float getr(){
+        return r;
     }
 }

@@ -12,9 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_LONG;
+import static java.lang.Math.min;
 
 public class FsChartActivity extends AppCompatActivity implements View.OnClickListener{
     private static DrawingView mDrawingView;
@@ -88,6 +92,9 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                     info = info.replaceAll(": 000",":     ");
                                     info = info.replaceAll(": 00",":   ");
                                     info = info.replaceAll(": 0",": ");
+                                    info = info+"\n"+"(x0,y0)=("+mDrawingView.getX0()+","+mDrawingView.gety0()+
+                                            ")\n(x1,y1)=("+mDrawingView.getX1()+","+mDrawingView.gety1()+
+                                            ")\nr="+mDrawingView.getr();
                                     mTextView.setTextColor(colRed);
                                     mTextView.setBackgroundColor(colBlue);
                                     mTextView.setText(info);
@@ -177,6 +184,9 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                                     info = info.replaceAll(": 000",":     ");
                                     info = info.replaceAll(": 00",":   ");
                                     info = info.replaceAll(": 0",": ");
+                                    info = info+"\n"+"(x0,y0)=("+mDrawingView.getX0()+","+mDrawingView.gety0()+
+                                            ")\n(x1,y1)=("+mDrawingView.getX1()+","+mDrawingView.gety1()+
+                                            ")\nr="+mDrawingView.getr();
                                     mTextView.setTextColor(colBlue);
                                     mTextView.setBackgroundColor(colTl);
                                     mTextView.setText(info);
@@ -237,6 +247,9 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                         info = info.replaceAll(": 000",":     ");
                         info = info.replaceAll(": 00",":   ");
                         info = info.replaceAll(": 0",": ");
+                        info = info+"\n"+"(x0,y0)=("+mDrawingView.getX0()+","+mDrawingView.gety0()+
+                                ")\n(x1,y1)=("+mDrawingView.getX1()+","+mDrawingView.gety1()+
+                                ")\nr="+mDrawingView.getr();
                         mTextView.setTextColor(colRed);
                         mTextView.setBackgroundColor(colBlue);
                         mTextView.setText(info);
@@ -252,6 +265,9 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
                         info = info.replaceAll(": 000",":     ");
                         info = info.replaceAll(": 00",":   ");
                         info = info.replaceAll(": 0",": ");
+                        info = info+"\n"+"(x0,y0)=("+mDrawingView.getX0()+","+mDrawingView.gety0()+
+                                ")\n(x1,y1)=("+mDrawingView.getX1()+","+mDrawingView.gety1()+
+                                ")\nr="+mDrawingView.getr();
                         mTextView.setTextColor(colBlue);
                         mTextView.setBackgroundColor(colTl);
                         mTextView.setText(info);
@@ -278,8 +294,19 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
     private void initViews() {
         setTitle("风水大师 - " + name);
         mDrawingView = (DrawingView) findViewById(R.id.img_screenshot);
+//        WindowManager manager = (WindowManager) context
+//                .getSystemService(Context.WINDOW_SERVICE);
+//        Display display = manager.getDefaultDisplay();
+//        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) mDrawingView.getLayoutParams(); //取控件textView当前的布局参数
+//        linearParams.height = display.getHeight();
         mTextView = (TextView)findViewById(R.id.tvmessage);
         mTextView.setMovementMethod(ScrollingMovementMethod.getInstance());
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                new Gongju().ShowMsg(arg0.getContext(),"",mTextView.getText().toString(),false,-1);
+            }
+        });
         mTvReDraw = (TextView)findViewById(R.id.tvredraw);
         mTvReDraw.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,7 +417,19 @@ public class FsChartActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void loadImage() {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.raw.fs);
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        float xdpi = getResources().getDisplayMetrics().xdpi;
+        float ydpi = getResources().getDisplayMetrics().ydpi;
+        // 这样可以计算屏幕的物理尺寸
+        float width2 = (width / xdpi)*(width / xdpi);
+        float height2 = (height / ydpi)*(width / xdpi);
+     //   Toast.makeText(this, "w="+width2+",h="+height2, Toast.LENGTH_LONG).show();
+        Bitmap bitmap;
+        if(min(width2,height2)>10)
+            bitmap = BitmapFactory.decodeResource(getResources(), R.raw.fs02);
+        else
+            bitmap = BitmapFactory.decodeResource(getResources(), R.raw.fs01);
         mDrawingView.loadImage(bitmap);
     }
     public static void shan2shui(){

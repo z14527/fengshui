@@ -174,10 +174,10 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
-        if(notHasLightSensorManager()) {
-            btxbd.setEnabled(false);
-            btlsbd.setEnabled(false);
-        }
+//        if(notHasLightSensorManager()) {
+//            btxbd.setEnabled(false);
+//            btlsbd.setEnabled(false);
+//        }
     }
     public Boolean notHasLightSensorManager() {
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
