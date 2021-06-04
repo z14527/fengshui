@@ -43,6 +43,7 @@ import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -61,6 +62,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -328,6 +333,24 @@ class Gongju {
             fos.close();
         } catch (Exception e) {
         }
+    }
+    public void copyFile(String source,String target){
+        Path sourcePath = Paths.get(source);
+        Path destinationPath = Paths.get(target);
+        try {
+            Files.copy(sourcePath, destinationPath,
+                    StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void ToastMsg(Context context, String msg){
+        Toast toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        LinearLayout linearLayout = (LinearLayout) toast.getView();
+        TextView messageTextView = (TextView) linearLayout.getChildAt(0);
+        messageTextView.setTextSize(25);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.show();
     }
 }
 class RealPathFromUriUtils {

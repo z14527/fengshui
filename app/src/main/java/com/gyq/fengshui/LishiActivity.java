@@ -23,11 +23,13 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -196,7 +198,7 @@ public class LishiActivity extends AppCompatActivity {
                 }
             }
         });
-        ImageButton btxsz = (ImageButton) findViewById(R.id.imgBtnSZ);
+        ImageButton btxsz = (ImageButton) findViewById(R.id.imgBtnSC);
         btxsz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -259,6 +261,16 @@ public class LishiActivity extends AppCompatActivity {
         final String phone = new Gongju().getNumber(this);
   //      final String phone = "13683559392";
         final String dbs = getApplicationContext().getDatabasePath("fengshui.db").getAbsolutePath();
+        if(MainActivity.up_url.contains("127.0.0.1")){
+            String dbs2 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()+"/data";
+            File dbf2 = new File(dbs2);
+            if(!dbf2.exists())
+                dbf2.mkdir();
+            String dbs3 = dbs2+"/13683559392_"+System.currentTimeMillis()+".db3";
+            new Gongju().copyFile(dbs,dbs3);
+            new Gongju().ToastMsg(getApplicationContext(), "成功保存到本机数据库！");
+            return;
+        }
         //用HttpClient发送请求，分为五步
 //第一步：创建HttpClient对象
         HttpClient client = new DefaultHttpClient();//创建一个发送请求的客户端
@@ -330,6 +342,57 @@ public class LishiActivity extends AppCompatActivity {
     }
 
     public void dwonloadDBfile() {
+        if(MainActivity.up_url.contains("127.0.0.1")){
+            String ret = "";
+            try {
+                String dbs2 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()+"/data";
+                File dbf2 = new File(dbs2);
+                if(!dbf2.exists())
+                    dbf2.mkdir();
+                File file = new File(dbs2);
+                File[] files = file.listFiles();
+                if(files.length>0) {
+                    for (File file2 : files) {
+                        if (file2.getName().contains("db3")) {
+                            if (ret.length() > 1)
+                                ret = ret + "%" + file2.getName();
+                            else
+                                ret = file2.getName();
+                        }
+                    }
+                }
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+            }
+//            if(ret.length()>1)
+//                return;
+            final AlertDialog.Builder builder = new AlertDialog.Builder(LishiActivity.this);
+            //builder.setIcon(R.drawable.ic_launcher);
+            builder.setIcon(android.R.drawable.btn_star);   //设置对话框标题前的图标
+            builder.setTitle("选择一个本机历史数据库");
+            if (ret.length() > 1) {
+                final String[] dbs = ret.split("%");
+                //    设置一个下拉的列表选择项
+                if (dbs.length >= 1) {
+                    builder.setItems(dbs, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new Gongju().ToastMsg(getApplicationContext(), "选择的历史数据库为：" + dbs[which]);
+                            String db1 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath()+"/data/" + dbs[which];
+                            String db2 = getApplicationContext().getDatabasePath("fengshui.db").getAbsolutePath();
+                            new Gongju().copyFile(db1,db2);
+                            new Gongju().ToastMsg(getApplicationContext(), "下载本机数据库成功！请退出重新进入历史宝地刷新数据！");
+                        }
+                    });
+                }
+            } else {
+                builder.setMessage("无可下载的本机历史数据库");
+            }
+            AlertDialog dialog = builder.create();  //创建对话框
+            dialog.setCanceledOnTouchOutside(true); //设置弹出框失去焦点是否隐藏,即点击屏蔽其它地方是否隐藏
+            dialog.show();
+            return;
+        }
         //用HttpClient发送请求，分为五步
         //第一步：创建HttpClient对象
         HttpClient httpCient = new DefaultHttpClient();
